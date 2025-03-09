@@ -27,17 +27,28 @@
 
 body {
   margin: 0;
-  font-family: 'Lora', serif;
-  background-color: var(--background);
-  color:var(--primaria);
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #bdbdbd;
 }
+  /*background-color: var(--background);*/
+  /*color:var(--primaria);*/
 
 a {
   font-family: 'Roboto', sans-serif;
 }
 
-div.container {
-  padding: 1rem;
+div#root {
+  width: 24.375rem;
+  min-height: 52.75rem;
+  background: #002555;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  position: relative;
 }
 
 h1,h2,h3,h4,h5,h6{
