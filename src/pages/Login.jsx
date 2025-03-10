@@ -1,43 +1,68 @@
 import { useState } from "react";
-import { redirect, useNavigate } from "react-router-dom";
-import { auth } from "../config/Firebase";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
 import Base from "./Base";
+import { Logo } from "../svg/Logo";
+import InputLabel from "../components/InputLabel/InputLabel";
+import Botao from "../components/Botao/Botao";
+import API_BASE_URL from "../config";
+import {FormLogin} from "./Style";
 
 const Login = () => {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [senha, setPassword] = useState('');
   const navigate = useNavigate();
 
   const handleLogin = async (event) => {
     event.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, email, password);
-      navigate('/');
+      const response = await fetch(`${API_BASE_URL}/api/login/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, senha })
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        localStorage.setItem("access_token", data.access);
+        localStorage.setItem("refresh_token", data.refresh);
+        console.log("Usuário autenticado:", data);
+
+        // Redireciona o usuário após o login
+        navigate("/");
+      } else {
+        alert("Erro no login: " + (data.detail || "Verifique suas credenciais."));
+      }
     } catch (error) {
-      alert(error.message);
+      alert("Erro ao conectar com o servidor.");
+      console.error(error);
     }
   };
 
   return (
-    <Base>
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="Email"
-        />
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          placeholder="Password"
-        />
-        <button type="submit">Login</button>
-      </form>
-    </Base>
-  )
+      <Base>
+        <Logo />
+        <FormLogin onSubmit={handleLogin}>
+          <InputLabel
+              label={"Email"}
+              placeholder={"Digite seu email"}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+          />
+          <InputLabel
+              label={"Senha"}
+              placeholder={"Digite sua senha"}
+              type="password"
+              value={senha}
+              onChange={(e) => setPassword(e.target.value)}
+          />
+          <Botao texto="Entrar" type="submit" />
+          <Botao texto="Criar conta" versaoInvertido={true} />
+        </FormLogin>
+      </Base>
+  );
 }
 
 export default Login;
