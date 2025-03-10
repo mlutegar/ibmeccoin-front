@@ -31,7 +31,7 @@ git add .
 Comando para dá commit nas alterações:
 
 ```bash
-git commit -m "feat: ajustando resolução"
+git commit -m "feat: criando página 1"
 ```
 
 Comando para enviar as alterações para o repositório:

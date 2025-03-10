@@ -1,7 +1,7 @@
 import { StyleBotao } from "./Style";
 
-const Botao = ({texto}) => (
-  <StyleBotao>
+const Botao = ({texto, versaoInvertido = false}) => (
+  <StyleBotao versaoInvertido = {versaoInvertido}>
       {texto}
   </StyleBotao>
 )

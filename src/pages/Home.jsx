@@ -3,6 +3,9 @@ import Base from "./Base"
 import { auth } from "../config/Firebase";
 import { useEffect } from "react";
 import Botao from "../components/Botao/Botao";
+import InputPuro from "../components/InputPuro/InputPuro";
+import InputLabel from "../components/InputLabel/InputLabel";
+import {Logo} from "../svg/Logo";
 
 const Home = () => {
 
@@ -19,11 +22,11 @@ const Home = () => {
 
   return (
     <Base>
-      <h1>
-     Aplicação React Base
-      </h1>
-
-        <Botao texto="Botão 1" />
+        <Logo/>
+        <InputLabel label={"Matricula"} placeholder={"Digite sua matricula"} />
+        <InputLabel label={"Senha"} placeholder={"Digite sua senha"} />
+        <Botao texto="Entrar" />
+        <Botao texto="Criar conta" versaoInvertido={true} />
     </Base>
   )
 }
