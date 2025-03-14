@@ -1,7 +1,7 @@
 import {Style} from "./Style";
 import Textos from "../Textos/Textos";
 
-const Pontuacao = ({}) => (
+const Pontuacao = ({turma, saldo}) => (
     <Style>
         <Textos
             texto={"Pontuação"}
@@ -10,13 +10,13 @@ const Pontuacao = ({}) => (
             color={"rgba(255, 255, 255, 0.60)"}
         />
         <Textos
-            texto={"200IC"}
+            texto={`${saldo}IC`}
             versao={1}
             tamanho={"4rem"}
             color={"white"}
         />
         <Textos
-            texto={"Pontuação"}
+            texto={turma}
             versao={2}
             tamanho={"0.9375rem"}
             color={"white"}
