@@ -2,17 +2,23 @@ import { useEffect, useState } from "react";
 import Base from "./Base";
 import API_BASE_URL from "../config";
 import { useNavigate } from "react-router-dom";
-import Pontuacao from "../components/Pontuacao/Pontuacao";  // Importa a URL da API
+import Pontuacao from "../components/Pontuacao/Pontuacao";
+import QrCode from "../components/QrCode/QrCode";  // Importa a URL da API
 
 const Home = () => {
     const [userData, setUserData] = useState({ nome: "", matricula: "", tipo: "" });
+    const [qrcode, setQrcode] = useState(1);
     const [saldo, setSaldo] = useState(null);
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {
+        console.log(qrcode);
+    }, [qrcode]);
+
+    useEffect(() => {
         async function fetchUserData() {
-            const token = localStorage.getItem("access_token"); // Pega o token JWT armazenado
+            const token = localStorage.getItem("token"); // Pega o token JWT armazenado
 
             if (!token) {
                 console.error("Usuário não autenticado");
@@ -40,7 +46,7 @@ const Home = () => {
         }
 
         async function fetchSaldo() {
-            const token = localStorage.getItem("access_token");
+            const token = localStorage.getItem("token");
 
             if (!token) {
                 console.error("Usuário não autenticado");
@@ -77,7 +83,7 @@ const Home = () => {
     }, [userData.matricula, navigate]);
 
     useEffect(() => {
-        const token = localStorage.getItem("access_token");
+        const token = localStorage.getItem("token");
 
         if (!token) {
             navigate("/login");
@@ -90,12 +96,27 @@ const Home = () => {
         return null;
     }
 
+
+
+    const handleQrCode = () => {
+        setQrcode(qrcode + 1);
+    }
+
+
+
     return (
         <Base>
             <Pontuacao
                 turma={"Atendimento e Planejamento"}
-                saldo={saldo} // Passa o saldo para o componente Pontuacao
+                saldo={saldo}
             />
+
+            <QrCode
+                value={qrcode}
+            />
+
+            <button onClick={handleQrCode}>Gerar novo QR Code</button>
+            <button onClick={() => navigate("/logout")}>Sair</button>
         </Base>
     );
 };

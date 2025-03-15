@@ -8,7 +8,7 @@ import API_BASE_URL from "../config";
 import {LoginStyle} from "./Style";
 
 const Login = () => {
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [senha, setPassword] = useState('');
     const navigate = useNavigate();
 
@@ -20,14 +20,13 @@ const Login = () => {
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify({email, senha})
+                body: JSON.stringify({username, password: senha})
             });
 
             const data = await response.json();
 
             if (response.ok) {
-                localStorage.setItem("access_token", data.access);
-                localStorage.setItem("refresh_token", data.refresh);
+                localStorage.setItem("token", data.token);
                 console.log("Usuário autenticado:", data);
 
                 // Redireciona o usuário após o login
@@ -47,10 +46,10 @@ const Login = () => {
                 <Logo/>
                 <form onSubmit={handleLogin}>
                     <InputLabel
-                        label={"Email"}
-                        placeholder={"Digite seu email"}
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        label={"Matricula"}
+                        placeholder={"Digite sua Matricula"}
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                     />
                     <InputLabel
                         label={"Senha"}

@@ -9,7 +9,7 @@ const Logout = () => {
   const handleLogout = (e) =>{
     e.preventDefault();
     signOut(auth);
-    window.sessionStorage.removeItem("accessToken");
+    window.localStorage.removeItem("token");
     navigate("/");
   }
 
