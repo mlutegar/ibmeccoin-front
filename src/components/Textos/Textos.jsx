@@ -1,10 +1,10 @@
-import { Texto1, Texto2 } from "./Style";
+import {Texto1, Texto2, Titulo, Subtitulo, SubtituloInvertido, Texto} from "./Style";
 
-const Textos = ({texto, versao = 1, tamanho, color = "white"}) => {
+const Textos = ({children, versao = 1, tamanho, color = "white"}) => {
   if (versao === 1) {
     return (
       <Texto1 tamanho={tamanho} cor={color}>
-        {texto}
+        {children}
       </Texto1>
     )
   }
@@ -12,8 +12,40 @@ const Textos = ({texto, versao = 1, tamanho, color = "white"}) => {
   if (versao === 2) {
     return (
         <Texto2 tamanho={tamanho} cor={color}>
-          {texto}
+          {children}
         </Texto2>
+    )
+  }
+
+  if (versao === 3) {
+    return (
+        <Titulo>
+          {children}
+        </Titulo>
+    )
+  }
+
+  if (versao === 4) {
+    return (
+        <Subtitulo>
+          {children}
+        </Subtitulo>
+    )
+  }
+
+  if (versao === 5) {
+    return (
+        <SubtituloInvertido>
+          {children}
+        </SubtituloInvertido>
+    )
+  }
+
+  if (versao === 6) {
+    return (
+        <Texto>
+          {children}
+        </Texto>
     )
   }
 }

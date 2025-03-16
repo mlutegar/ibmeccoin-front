@@ -20,4 +20,43 @@ const Texto2 = styled.div`
     text-transform: uppercase;
 `;
 
-export {Texto1, Texto2};
+const Titulo = styled.div`
+    color: #000;
+    font-family: Krub;
+    font-size: 1.25rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: uppercase;
+`;
+
+const Subtitulo = styled.div`
+    color: #000;
+    font-family: Krub;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+`;
+
+const SubtituloInvertido = styled.div`
+    color: #FFF;
+    font-family: Krub;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+`;
+
+const Texto = styled.div`
+    color: #000;
+    font-family: Krub;
+    font-size: 0.875rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+`;
+
+
+
+export {Texto1, Texto2, Titulo, Subtitulo, SubtituloInvertido, Texto};

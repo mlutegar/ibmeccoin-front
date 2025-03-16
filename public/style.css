@@ -49,6 +49,7 @@ div#root {
   flex-direction: column;
   margin: 0;
   position: relative;
+  padding: 4rem 0;
 }
 
 div.container {
