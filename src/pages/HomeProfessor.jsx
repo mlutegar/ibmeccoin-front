@@ -4,6 +4,7 @@ import API_BASE_URL from "../config";
 import { useNavigate } from "react-router-dom";
 import QrCode from "../components/QrCode/QrCode";
 import Cookies from "js-cookie";
+import Botao from "../components/Botao/Botao";
 
 const HomeProfessor = () => {
     const navigate = useNavigate();
@@ -85,10 +86,6 @@ const HomeProfessor = () => {
 
     return (
         <Base>
-            {/* Componente de QR Code com lógica interna */}
-            <QrCode />
-
-            {/* Lista de alunos cadastrados */}
             <section>
                 <h2>Alunos Cadastrados</h2>
                 {alunos.length ? alunos.map(aluno => (
@@ -106,7 +103,8 @@ const HomeProfessor = () => {
                 )) : <p>Nenhum aluno cadastrado.</p>}
             </section>
 
-            <button onClick={() => navigate("/logout")}>Sair</button>
+            <Botao onClick={() => navigate("/qr-code")}>QR Code</Botao>
+            <Botao onClick={() => navigate("/logout")}>Sair</Botao>
         </Base>
     );
 };

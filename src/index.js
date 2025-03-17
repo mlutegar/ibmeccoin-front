@@ -10,6 +10,7 @@ import HomeProfessor from "./pages/HomeProfessor";
 import Cadastro from "./pages/Cadastro";
 import TokenHandler from "./pages/TokenHandler";
 import Grupo from "./pages/Grupo";
+import QrCode from "./pages/QrCode";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -20,6 +21,7 @@ root.render(
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/professor" element={<HomeProfessor/>} />
+        <Route path="/qr-code" element={<QrCode/>} />
         <Route path="/token/:tokenId" element={<TokenHandler />} />
         <Route path="/grupo" element={<Grupo/>} />
 

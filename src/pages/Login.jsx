@@ -36,8 +36,10 @@ const Login = () => {
                 const usuario = await fetchAlunoId(username);
                 if (usuario) {
                     if (usuario.tipo === "aluno") {
+                        localStorage.setItem("tipo", "aluno");
                         navigate("/");
                     } else if (usuario.tipo === "professor") {
+                        localStorage.setItem("tipo", "professor");
                         navigate("/professor");
                     } else {
                         // Caso o tipo não esteja definido, redireciona para uma rota padrão

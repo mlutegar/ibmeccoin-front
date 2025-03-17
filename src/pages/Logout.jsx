@@ -12,6 +12,7 @@ const Logout = () => {
     window.localStorage.removeItem("token");
     window.localStorage.removeItem("username");
     window.localStorage.removeItem("alunoId");
+    window.localStorage.removeItem("tipo");
     navigate("/");
   }
 

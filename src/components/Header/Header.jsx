@@ -13,6 +13,7 @@ import { useNavigate } from 'react-router-dom';
 const Header = () => {
     const [user] = useState(localStorage.getItem('username'));
     const [isNavOpen, setIsNavOpen] = useState(false);
+    const [tipo] = useState(localStorage.getItem('tipo'));
     const navigate = useNavigate();
 
     const toggleNav = () => {
@@ -73,7 +74,7 @@ const Header = () => {
 
             {/* Renderiza o dropdown apenas se a navbar estiver aberta */}
             {isNavOpen && (
-                user ? (
+                tipo === "aluno" ? (
                     <Dropdown>
                         <ul>
                             <li>
@@ -94,16 +95,19 @@ const Header = () => {
                     <Dropdown>
                         <ul>
                             <li>
-                                <LinkItem href="/token">Token</LinkItem>
+                                <LinkItem onClick={() => {
+                                    navigate('/professor');
+                                    toggleNav();
+                                }}>Tela inicial</LinkItem>
                             </li>
                             <li>
-                                <LinkItem href="/equipamentos_emprestados">Equipamento em uso</LinkItem>
+                                <LinkItem onClick={() => {
+                                    navigate('/qr-code');
+                                    toggleNav();
+                                }}>QrCode</LinkItem>
                             </li>
                             <li>
-                                <LinkItem href="/upar_equipamentos">Upar equipamentos</LinkItem>
-                            </li>
-                            <li>
-                                <LinkItem href="/perfil_admin">Perfil</LinkItem>
+                                <LinkItem href="/">Perfil</LinkItem>
                             </li>
                         </ul>
                     </Dropdown>

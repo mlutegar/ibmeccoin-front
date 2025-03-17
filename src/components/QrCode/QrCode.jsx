@@ -2,6 +2,9 @@ import { useState, useEffect, useRef } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 import API_BASE_URL from "../../config";
 import Cookies from "js-cookie";
+import {Style} from "./Style";
+import Botao from "../Botao/Botao";
+import InputLabel from "../InputLabel/InputLabel";
 
 const QrCode = () => {
     const [tokenId, setTokenId] = useState("");
@@ -67,31 +70,32 @@ const QrCode = () => {
     }, []);
 
     return (
-        <div>
+        <Style>
+            <div className={"qrcode"}>
+                {tokenId ? (
+                    <QRCodeCanvas value={String(tokenId)} size={200}/>
+                ) : (
+                    <></>
+                )}
+            </div>
             <div>
-                <label>Quantidade de IC:</label>
-                <input
-                    type="number"
-                    value={quantidade}
-                    onChange={(e) => setQuantidade(e.target.value)}
-                    disabled={isRunning}  // Opcional: desabilita a alteração enquanto estiver rodando
+                <InputLabel
+                    label = "Quantidade de IC:"
+                    placeholder = "Insira a quantidade de IC"
+                    value = {quantidade}
+                    type = "number"
+                    onChange = {(e) => setQuantidade(e.target.value)}
+                    disabled={isRunning}
                 />
             </div>
-            <div style={{ marginTop: "20px" }}>
-                {tokenId ? (
-                    <QRCodeCanvas value={String(tokenId)} size={200} />
-                ) : (
-                    <p>QR Code não gerado</p>
-                )}
-            </div>
-            <div style={{ marginTop: "20px" }}>
+            <div style={{marginTop: "20px"}}>
                 {!isRunning ? (
-                    <button onClick={startQRCode}>Iniciar QR Code</button>
+                    <Botao onClick={startQRCode}>Iniciar QR Code</Botao>
                 ) : (
-                    <button onClick={stopQRCode}>Parar QR Code</button>
+                    <Botao onClick={stopQRCode}>Parar QR Code</Botao>
                 )}
             </div>
-        </div>
+        </Style>
     );
 };
 
