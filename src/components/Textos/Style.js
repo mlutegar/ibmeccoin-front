@@ -21,13 +21,20 @@ const Texto2 = styled.div`
 `;
 
 const Titulo = styled.div`
-    color: #000;
+    color: #fff;
     font-family: Krub;
     font-size: 1.25rem;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
     text-transform: uppercase;
+
+    text-align: left;
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    margin-left: 3rem;
+    margin-bottom: 1rem;
 `;
 
 const Subtitulo = styled.div`
@@ -56,7 +63,6 @@ const Texto = styled.div`
     font-weight: 400;
     line-height: normal;
 `;
-
 
 
 export {Texto1, Texto2, Titulo, Subtitulo, SubtituloInvertido, Texto};

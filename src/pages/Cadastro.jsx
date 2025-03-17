@@ -5,6 +5,7 @@ import {Logo} from "../svg/Logo";
 import InputLabel from "../components/InputLabel/InputLabel";
 import Botao from "../components/Botao/Botao";
 import API_BASE_URL from "../config";
+import Cookies from "js-cookie";
 
 const Cadastro = () => {
     const [username, setUsername] = useState("");
@@ -15,12 +16,15 @@ const Cadastro = () => {
     const navigate = useNavigate();
 
     const handleCadastro = async (event) => {
+        const csrftoken = Cookies.get('csrftoken');
+
         event.preventDefault();
         try {
             const response = await fetch(`${API_BASE_URL}/api/cadastro/`, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    'X-CSRFToken': csrftoken,
                 },
                 body: JSON.stringify({
                     username,

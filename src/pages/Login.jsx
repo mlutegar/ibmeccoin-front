@@ -6,6 +6,7 @@ import InputLabel from "../components/InputLabel/InputLabel";
 import Botao from "../components/Botao/Botao";
 import API_BASE_URL from "../config";
 import {LoginStyle} from "./Style";
+import Cookies from 'js-cookie';
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -13,12 +14,14 @@ const Login = () => {
     const navigate = useNavigate();
 
     const handleLogin = async (event) => {
+        const csrftoken = Cookies.get('csrftoken');
         event.preventDefault();
         try {
             const response = await fetch(`${API_BASE_URL}/api/login/`, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    'X-CSRFToken': csrftoken,
                 },
                 body: JSON.stringify({username, password: senha})
             });
@@ -53,11 +56,13 @@ const Login = () => {
     };
 
     const fetchAlunoId = async (username) => {
+        const csrftoken = Cookies.get('csrftoken');
         try {
             const response = await fetch(`${API_BASE_URL}/api/alunos/`, {
                 method: "GET",
                 headers: {
                     "accept": "application/json",
+                    'X-CSRFToken': csrftoken,
                 }
             });
 
@@ -81,7 +86,6 @@ const Login = () => {
     };
 
     return (
-        <Base>
             <LoginStyle>
                 <Logo/>
                 <form onSubmit={handleLogin}>
@@ -107,7 +111,6 @@ const Login = () => {
                     </Botao>
                 </form>
             </LoginStyle>
-        </Base>
     );
 }
 

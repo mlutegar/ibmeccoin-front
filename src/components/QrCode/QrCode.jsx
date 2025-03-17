@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 import API_BASE_URL from "../../config";
+import Cookies from "js-cookie";
 
 const QrCode = () => {
     const [tokenId, setTokenId] = useState("");
@@ -12,11 +13,14 @@ const QrCode = () => {
 
     // Função para criar o token via API
     const createToken = async () => {
+        const csrftoken = Cookies.get('csrftoken');
+
         try {
             const response = await fetch(API_URL, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    'X-CSRFToken': csrftoken,
                 },
                 body: JSON.stringify({ quantidade_ic: Number(quantidade) }),
             });

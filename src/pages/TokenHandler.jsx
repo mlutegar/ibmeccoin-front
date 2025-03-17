@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import Cookies from "js-cookie";
 
 const TokenHandler = () => {
     const { tokenId } = useParams();
@@ -17,12 +18,14 @@ const TokenHandler = () => {
 
         const processToken = async () => {
             const alunoId = localStorage.getItem("alunoId");
+            const csrftoken = Cookies.get('csrftoken');
 
             try {
                 const tokenResponse = await fetch(`${API_BASE_URL}/api/tokens/${tokenId}`, {
                     method: "GET",
                     headers: {
                         "Content-Type": "application/json",
+                        'X-CSRFToken': csrftoken,
                     }
                 });
 
@@ -38,7 +41,8 @@ const TokenHandler = () => {
                 const movimentacaoResponse = await fetch(`${API_BASE_URL}/api/movimentacoes/`, {
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/json"
+                        "Content-Type": "application/json",
+                        'X-CSRFToken': csrftoken,
                     },
                     body: JSON.stringify({
                         valor: valorCredito,

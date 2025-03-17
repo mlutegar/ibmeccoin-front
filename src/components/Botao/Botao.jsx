@@ -23,7 +23,7 @@ const Botao = ({tipo = 1, children, versaoInvertido = false, type, onClick, subm
         return (
             <BotaoSecundario type={type} onClick={onClick} submit={submit}>
                 <Textos
-                    versao={4}
+                    versao={5}
                 >
                     {children}
                 </Textos>

@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import API_BASE_URL from "../../config";
 import { Container, Titulo, Lista, ItemLista, Mensagem, Erro } from "./Style";
+import Cookies from "js-cookie";
+import Botao from "../Botao/Botao";
 
 const ConvitesLista = () => {
     const [convites, setConvites] = useState([]);
@@ -9,6 +11,7 @@ const ConvitesLista = () => {
 
     useEffect(() => {
         const fetchConvites = async () => {
+            const csrftoken = Cookies.get('csrftoken');
             const token = localStorage.getItem("token");
             const alunoId = localStorage.getItem("alunoId"); // Obtém o ID do aluno logado
 
@@ -21,13 +24,20 @@ const ConvitesLista = () => {
             try {
                 const response = await fetch(`${API_BASE_URL}/api/convites/`, {
                     method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        'X-CSRFToken': csrftoken,
+                    },
                 });
 
                 if (response.ok) {
                     const data = await response.json();
-                    // Filtra apenas convites que tenham o destinatário igual ao alunoId
+
+                    console.log(data);
+                    console.log(alunoId);
                     const convitesFiltrados = data.filter(convite => convite.destinatario == alunoId);
                     setConvites(convitesFiltrados);
+                    console.log(convitesFiltrados);
                 } else {
                     setError("Erro ao buscar convites.");
                 }
@@ -44,6 +54,7 @@ const ConvitesLista = () => {
     const handleAceitarConvite = async (convite) => {
         const token = localStorage.getItem("token");
         const alunoId = localStorage.getItem("alunoId"); // ID do aluno logado
+        const csrftoken = Cookies.get('csrftoken');
 
         if (!token || !alunoId) {
             alert("Usuário não autenticado ou ID do aluno não encontrado.");
@@ -53,7 +64,11 @@ const ConvitesLista = () => {
         try {
             // 1️⃣ Busca os dados do grupo atual
             const grupoResponse = await fetch(`${API_BASE_URL}/api/grupos/${convite.grupo}/`, {
-                method: "GET"
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    'X-CSRFToken': csrftoken,
+                },
             });
 
             if (!grupoResponse.ok) {
@@ -69,7 +84,8 @@ const ConvitesLista = () => {
             const updateGrupoResponse = await fetch(`${API_BASE_URL}/api/grupos/${convite.grupo}/`, {
                 method: "PUT",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    'X-CSRFToken': csrftoken,
                 },
                 body: JSON.stringify({ ...grupoData, alunos: alunosAtualizados })
             });
@@ -81,7 +97,11 @@ const ConvitesLista = () => {
 
             // 3️⃣ Apaga o convite da API
             const deleteResponse = await fetch(`${API_BASE_URL}/api/convites/${convite.id}/`, {
-                method: "DELETE"
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    'X-CSRFToken': csrftoken,
+                },
             });
 
             if (!deleteResponse.ok) {
@@ -93,6 +113,7 @@ const ConvitesLista = () => {
             setConvites(prevConvites => prevConvites.filter(c => c.id !== convite.id));
 
             alert("Convite aceito com sucesso!");
+            window.location.reload();
         } catch (error) {
             console.error("Erro ao aceitar convite:", error);
             alert("Erro ao aceitar convite. Tente novamente.");
@@ -114,9 +135,9 @@ const ConvitesLista = () => {
                             <strong>Expiração:</strong> {convite.expiracao} <br />
                             <strong>Válido:</strong> {convite.valido ? "Sim" : "Não"}
                             <hr />
-                            <StyleBotao onClick={() => handleAceitarConvite(convite)}>
+                            <Botao onClick={() => handleAceitarConvite(convite)}>
                                 Aceitar
-                            </StyleBotao>
+                            </Botao>
                         </ItemLista>
                     ))}
                 </Lista>

@@ -3,6 +3,7 @@ import Base from "./Base";
 import API_BASE_URL from "../config";
 import { useNavigate } from "react-router-dom";
 import QrCode from "../components/QrCode/QrCode";
+import Cookies from "js-cookie";
 
 const HomeProfessor = () => {
     const navigate = useNavigate();
@@ -18,11 +19,14 @@ const HomeProfessor = () => {
 
     useEffect(() => {
         async function fetchAlunos() {
+            const csrftoken = Cookies.get('csrftoken');
+
             try {
                 const response = await fetch(`${API_BASE_URL}/api/alunos/`, {
                     method: "GET",
                     headers: {
                         "accept": "application/json",
+                        'X-CSRFToken': csrftoken,
                     }
                 });
                 if (response.ok) {
@@ -40,6 +44,8 @@ const HomeProfessor = () => {
 
     const handleDoarPontos = async (alunoId) => {
         const token = localStorage.getItem("token");
+        const csrftoken = Cookies.get('csrftoken');
+
         if (!token) {
             alert("Usuário não autenticado.");
             return;
@@ -53,7 +59,8 @@ const HomeProfessor = () => {
             const response = await fetch(`${API_BASE_URL}/api/movimentacoes/`, {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json"
+                    "Content-Type": "application/json",
+                    'X-CSRFToken': csrftoken,
                 },
                 body: JSON.stringify({
                     valor: Number(quantidade),

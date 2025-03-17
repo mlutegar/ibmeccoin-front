@@ -6,9 +6,8 @@ import GrupoMembros from "../components/GrupoMembros/GrupoMembros";
 import Botao from "../components/Botao/Botao";
 import {signOut} from "firebase/auth";
 import {auth} from "../config/Firebase";
-import Cards from "../components/Cards/Cards";
-import {Texto} from "../components/Textos/Style";
 import Textos from "../components/Textos/Textos";
+import OpcoesHome from "../components/OpcoesHome/OpcoesHome";
 
 const Home = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -40,22 +39,12 @@ const Home = () => {
     return (
         <Base>
             <Textos
-                tipo={3}
+                versao={3}
             >
                 Atendimento e Plan.
             </Textos>
             <Pontuacao saldo={1} />
-            <Cards
-                tipo={1}
-            />
-            <Cards
-                tipo={2}
-            />
-            <Cards
-                tipo={3}
-            />
-
-            <GrupoMembros grupoId={1} />
+            <OpcoesHome/>
             <Botao onClick={handleLogout}>Logout</Botao>
         </Base>
     );

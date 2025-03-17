@@ -1,35 +1,54 @@
-// GrupoMembros.jsx
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import API_BASE_URL from "../../config";
-import { Container, Title, List, ListItem, Message } from "./Style";
+import {Container, Title, List, ListItem, Message} from "./Style";
 import ConviteForm from "../ConviteForm/ConviteForm";
 import ConvitesLista from "../ConvitesLista/ConvitesLista";
+import Cookies from "js-cookie";
 
-const GrupoMembros = ({ grupoId }) => {
+const GrupoMembros = () => {
     const [membros, setMembros] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [grupoId, setGrupoId] = useState(null);
+    const alunoId = localStorage.getItem("alunoId");
 
     useEffect(() => {
-        const fetchMembros = async () => {
+        const fetchGrupoDoUsuario = async () => {
             const token = localStorage.getItem("token");
+            const csrftoken = Cookies.get('csrftoken');
 
-            if (!token || !grupoId) {
-                setError("Usuário não autenticado ou grupo não especificado.");
+            if (!token || !alunoId) {
+                setError("Usuário não autenticado ou aluno não identificado.");
                 setLoading(false);
                 return;
             }
 
             try {
-                const response = await fetch(`${API_BASE_URL}/api/grupos/${grupoId}/`, {
+                // Busca todos os grupos
+                const response = await fetch(`${API_BASE_URL}/api/grupos/`, {
                     method: "GET",
+                    headers: {
+                        "Content-Type": "application/json",
+                        'X-CSRFToken': csrftoken,
+                    },
                 });
 
                 if (response.ok) {
-                    const grupoData = await response.json();
-                    setMembros(grupoData.alunos); // Lista de IDs dos alunos no grupo
+                    const grupos = await response.json();
+
+                    // Procura o grupo que contenha o aluno logado (convertendo alunoId para número, se necessário)
+                    const grupoUsuario = grupos.find(
+                        grupo => grupo.alunos && grupo.alunos.includes(Number(alunoId))
+                    );
+
+                    if (grupoUsuario) {
+                        setGrupoId(grupoUsuario.id);
+                        setMembros(grupoUsuario.alunos);
+                    } else {
+                        setError("Usuário não possui grupo.");
+                    }
                 } else {
-                    setError("Erro ao buscar membros do grupo.");
+                    setError("Erro ao buscar grupos.");
                 }
             } catch (err) {
                 setError("Erro ao conectar com a API.");
@@ -38,27 +57,34 @@ const GrupoMembros = ({ grupoId }) => {
             }
         };
 
-        fetchMembros();
-    }, [grupoId]);
+        fetchGrupoDoUsuario();
+    }, [alunoId]);
 
-    if (loading) return <Message>Carregando membros...</Message>;
-    if (error) return <Message>{error}</Message>;
+    if (loading) return <Message>Carregando informações do grupo...</Message>;
 
     return (
         <Container>
-            <Title>Membros do Grupo {grupoId}</Title>
-            {membros.length > 0 ? (
-                <List>
-                    {membros.map((alunoId) => (
-                        <ListItem key={alunoId}>Aluno ID: {alunoId}</ListItem>
-                    ))}
-                </List>
+            {error ? (
+                <>
+                    <Message>{error}</Message>
+                    <ConviteForm/>
+                </>
             ) : (
-                <Message>Este grupo ainda não possui membros.</Message>
+                <>
+                    <Title>Membros do Grupo {grupoId}</Title>
+                    {membros.length > 0 ? (
+                        <List>
+                            {membros.map((id) => (
+                                <ListItem key={id}>Aluno ID: {id}</ListItem>
+                            ))}
+                        </List>
+                    ) : (
+                        <Message>Este grupo ainda não possui membros.</Message>
+                    )}
+                </>
             )}
 
-            <ConviteForm />
-            <ConvitesLista />
+            <ConvitesLista/>
         </Container>
     );
 };

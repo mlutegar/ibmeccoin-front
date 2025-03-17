@@ -2,6 +2,7 @@ import { useState } from "react";
 import API_BASE_URL from "../../config";
 import { StyleForm, StyleInput } from "./Style";
 import Botao from "../Botao/Botao";
+import Cookies from "js-cookie";
 
 const ConviteForm = () => {
     const [conviteId, setConviteId] = useState("");
@@ -10,6 +11,7 @@ const ConviteForm = () => {
         event.preventDefault();
         const token = localStorage.getItem("token");
         const alunoId = localStorage.getItem("alunoId");
+        const csrftoken = Cookies.get('csrftoken');
 
         if (!token || !alunoId || !conviteId) {
             console.error("Token, ID do aluno ou ID do convidado não encontrado.");
@@ -21,6 +23,7 @@ const ConviteForm = () => {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
+                    'X-CSRFToken': csrftoken,
                 },
                 body: JSON.stringify({
                     grupo: 1,
