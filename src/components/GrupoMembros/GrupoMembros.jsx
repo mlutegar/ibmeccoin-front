@@ -4,6 +4,8 @@ import {Container, Title, List, ListItem, Message} from "./Style";
 import ConviteForm from "../ConviteForm/ConviteForm";
 import ConvitesLista from "../ConvitesLista/ConvitesLista";
 import Cookies from "js-cookie";
+import CriarGrupo from "../CriarGrupo/CriarGrupo";
+import SairGrupo from "../SairGrupo/SairGrupo";
 
 const GrupoMembros = () => {
     const [membros, setMembros] = useState([]);
@@ -67,7 +69,8 @@ const GrupoMembros = () => {
             {error ? (
                 <>
                     <Message>{error}</Message>
-                    <ConviteForm/>
+                    <ConvitesLista/>
+                    <CriarGrupo/>
                 </>
             ) : (
                 <>
@@ -81,12 +84,14 @@ const GrupoMembros = () => {
                     ) : (
                         <Message>Este grupo ainda não possui membros.</Message>
                     )}
+                    {/* Botão para sair do grupo */}
+                    <ConviteForm/>
+                    <SairGrupo grupoId={grupoId} membros={membros} onSair={setMembros} />
                 </>
             )}
-
-            <ConvitesLista/>
         </Container>
     );
+
 };
 
 export default GrupoMembros;

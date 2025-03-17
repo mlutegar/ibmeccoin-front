@@ -74,6 +74,7 @@ const Login = () => {
 
                 if (aluno) {
                     localStorage.setItem("alunoId", aluno.id);
+                    localStorage.setItem("alunoNome", aluno.first_name);
                     console.log("ID do aluno armazenado:", aluno.id);
                     return aluno;
                 } else {

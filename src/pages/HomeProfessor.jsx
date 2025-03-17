@@ -104,7 +104,6 @@ const HomeProfessor = () => {
             </section>
 
             <Botao onClick={() => navigate("/qr-code")}>QR Code</Botao>
-            <Botao onClick={() => navigate("/logout")}>Sair</Botao>
         </Base>
     );
 };

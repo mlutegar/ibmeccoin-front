@@ -2,8 +2,10 @@ import { signOut } from "firebase/auth"
 import { auth } from "../config/Firebase";
 import Base from "./Base";
 import { useNavigate } from "react-router-dom";
+import Textos from "../components/Textos/Textos";
+import Botao from "../components/Botao/Botao";
 
-const Logout = () => {
+const Perfil = () => {
   const navigate = useNavigate();
 
   const handleLogout = (e) =>{
@@ -13,16 +15,19 @@ const Logout = () => {
     window.localStorage.removeItem("username");
     window.localStorage.removeItem("alunoId");
     window.localStorage.removeItem("tipo");
+    window.localStorage.removeItem("alunoNome");
     navigate("/");
   }
 
   return (
     <Base>
-      <h1>Logout</h1>
-      <button onClick={handleLogout}>Logout</button>
+      <Textos>
+        PERFIL
+      </Textos>
+      <Botao onClick={handleLogout}>Logout</Botao>
     </Base>
   )
 }
 
 
-export default Logout;
+export default Perfil;

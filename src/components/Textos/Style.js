@@ -53,6 +53,9 @@ const SubtituloInvertido = styled.div`
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 `;
 
 const Texto = styled.div`

@@ -5,7 +5,7 @@ import { createRoot } from "react-dom/client";
 import Home from "./pages/Home";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import Login from "./pages/Login";
-import Logout from "./pages/Logout";
+import Perfil from "./pages/Perfil";
 import HomeProfessor from "./pages/HomeProfessor";
 import Cadastro from "./pages/Cadastro";
 import TokenHandler from "./pages/TokenHandler";
@@ -27,7 +27,7 @@ root.render(
 
         <Route path="/login" element={<Login/>} />
         <Route path="/cadastro" element={<Cadastro/>} />
-        <Route path="/logout" element={<Logout/>} />
+        <Route path="/perfil" element={<Perfil/>} />
       </Routes>
     </HashRouter>
   </React.StrictMode>

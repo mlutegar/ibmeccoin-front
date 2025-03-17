@@ -9,6 +9,7 @@ import {
     LinkItem
 } from './Style';
 import { useNavigate } from 'react-router-dom';
+import Textos from "../Textos/Textos";
 
 const Header = () => {
     const [user] = useState(localStorage.getItem('username'));
@@ -21,9 +22,13 @@ const Header = () => {
     };
 
     return (
-        <Nav>
+        <Nav aberto={isNavOpen}>
             <HeaderContent>
-                <User className="branco">Olá, {user}</User>
+                <Textos
+                    versao={5}
+                >
+                    Olá, {user}
+                </Textos>
 
                 {/* Exibe o Menu ou MenuClose conforme o estado */}
                 {!isNavOpen ? (
@@ -87,7 +92,7 @@ const Header = () => {
                                 <LinkItem href="/">Loja</LinkItem>
                             </li>
                             <li>
-                                <LinkItem href="/">Perfil</LinkItem>
+                                <LinkItem onClick={() => { navigate('/perfil'); toggleNav(); }}>Perfil</LinkItem>
                             </li>
                         </ul>
                     </Dropdown>
@@ -107,7 +112,7 @@ const Header = () => {
                                 }}>QrCode</LinkItem>
                             </li>
                             <li>
-                                <LinkItem href="/">Perfil</LinkItem>
+                                <LinkItem onClick={() => { navigate('/perfil'); toggleNav(); }}>Perfil</LinkItem>
                             </li>
                         </ul>
                     </Dropdown>

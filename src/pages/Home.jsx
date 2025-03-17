@@ -45,7 +45,6 @@ const Home = () => {
             </Textos>
             <Pontuacao saldo={1} />
             <OpcoesHome/>
-            <Botao onClick={handleLogout}>Logout</Botao>
         </Base>
     );
 };

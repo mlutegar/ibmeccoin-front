@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import API_BASE_URL from "../../config";
-import { Container, Titulo, Lista, ItemLista, Mensagem, Erro } from "./Style";
+import { Container, Lista, ItemLista, Mensagem, Erro } from "./Style";
 import Cookies from "js-cookie";
 import Botao from "../Botao/Botao";
 
