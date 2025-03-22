@@ -1,19 +1,26 @@
 import styled from 'styled-components';
 
 export const Nav = styled.nav`
-    background: #0934aa;
-    border-radius: 0 0 20px 20px;
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    transition: height 0.5s;
-    z-index: 1;
-    position: absolute;
-    width: 100%;
-    top: 0;
-    box-sizing: border-box;
-    height: 84px;
+    .navbar{
+        background: #0934aa;
+        border-radius: 0 0 20px 20px;
+        padding: 25px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        z-index: 1;
+        position: absolute;
+        width: 100%;
+        top: 0;
+        box-sizing: border-box;
+        height: 84px;
+        left: 0;
+        transition: border-radius 0.1s ease-in-out, height 0.5s ease-in-out;
+    }
+    
+    .open{
+        border-radius: 0 !important;
+    }
 `;
 
 export const HeaderContent = styled.div`
@@ -54,25 +61,39 @@ export const MenuClose = styled.div`
 `;
 
 export const Dropdown = styled.div`
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    width: 100%;
-    position: absolute;
-    background-color: #0934aa;
-    z-index: 1;
-    height: 250px;
-    margin: 50px 0 0 0;
-    padding: 1rem 0 0 3rem;
-    left: 0;
-    transition: height 0.5s;
-    border-top: 1px solid #ffffff;
-    border-radius: 0 0 20px 20px;
-    top: 30px;
+    .dropdown{
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+        width: 100%;
+        position: absolute;
+        background-color: #0934aa;
+        z-index: -10;
+        height: 0px;
+        margin: 50px 0 0 0;
+        left: 0;
+        transition: height 0.5s, top 0.5s, border-top 0.5s 0.5s;
+        border-radius: 0 0 20px 20px;
+        border-top: 0;
+        top: -30px;
+    }
+    
+    .open{
+        height: 250px;
+        padding: 1rem 0 0 3rem;
+        border-top: 1px solid #ffffff;
+        top: 30px;
+    }
+    
+    .close ul{
+        opacity: 0;
+        transition: opacity 0.1s;
+        left: 3rem;
+        position: relative;
+    }
 
     ul {
         opacity: 1;
-        transition: opacity 0.5s 0.5s;
         list-style-type: none;
         padding: 0;
         margin: 0;
