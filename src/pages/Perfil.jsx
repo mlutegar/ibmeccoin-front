@@ -3,7 +3,7 @@ import { auth } from "../config/Firebase";
 import Base from "./Base";
 import { useNavigate } from "react-router-dom";
 import Textos from "../components/Textos/Textos";
-import Botao from "../components/Botao/Botao";
+import BotaoPrimario from "../components/Botoes/BotaoPrimario/BotaoPrimario";
 
 const Perfil = () => {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ const Perfil = () => {
       <Textos>
         PERFIL
       </Textos>
-      <Botao onClick={handleLogout}>Logout</Botao>
+      <BotaoPrimario onClick={handleLogout}>Logout</BotaoPrimario>
     </Base>
   )
 }

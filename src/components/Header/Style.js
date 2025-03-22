@@ -90,6 +90,7 @@ export const Dropdown = styled.div`
         transition: opacity 0.1s;
         left: 3rem;
         position: relative;
+        display: none;
     }
 
     ul {
