@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Header from "../components/Header/Header";
+import Header from "../components/Secoes/Header/Header";
 
 const Base = (props) => {
     return (

@@ -1,9 +1,9 @@
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import Base from "./Base";
-import {Logo} from "../svg/Logo";
-import InputLabel from "../components/InputLabel/InputLabel";
-import Botao from "../components/Botao/Botao";
+import {Logo} from "../components/Icones/Logo";
+import InputLabel from "../components/Elementos/InputLabel/InputLabel";
+import Botao from "../components/Elementos/Botoes/Botao/Botao";
 import API_BASE_URL from "../config";
 import Cookies from "js-cookie";
 

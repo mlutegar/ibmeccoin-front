@@ -1,7 +1,7 @@
-import OpcoesHome from "../components/OpcoesHome/OpcoesHome";
-import GrupoMembros from "../components/GrupoMembros/GrupoMembros";
+import OpcoesHome from "../components/Secoes/OpcoesHome/OpcoesHome";
+import GrupoMembros from "../components/Secoes/GrupoMembros/GrupoMembros";
 import Base from "./Base";
-import Titulo from "../components/Textos/Titulo/Titulo";
+import Titulo from "../components/Elementos/Textos/Titulo/Titulo";
 
 const Grupo = () => {
     return (

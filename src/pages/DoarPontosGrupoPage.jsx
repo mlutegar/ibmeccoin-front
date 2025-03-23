@@ -1,10 +1,9 @@
 import { useEffect } from "react";
 import Base from "./Base";
 import { useNavigate } from "react-router-dom";
-import QrCode from "../components/Secoes/QrCode/QrCode";
 import Titulo from "../components/Elementos/Textos/Titulo/Titulo";
 
-const HomeProfessor = () => {
+const DoarPontosGrupoPage = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -17,11 +16,10 @@ const HomeProfessor = () => {
     return (
         <Base>
             <Titulo>
-                QRCODE
+                Doar pontos para grupo
             </Titulo>
-            <QrCode />
         </Base>
     );
 };
 
-export default HomeProfessor;
+export default DoarPontosGrupoPage;

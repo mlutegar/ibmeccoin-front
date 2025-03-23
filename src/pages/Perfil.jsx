@@ -2,8 +2,8 @@ import { signOut } from "firebase/auth"
 import { auth } from "../config/Firebase";
 import Base from "./Base";
 import { useNavigate } from "react-router-dom";
-import BotaoPrimario from "../components/Botoes/BotaoPrimario/BotaoPrimario";
-import Titulo from "../components/Textos/Titulo/Titulo";
+import BotaoPrimario from "../components/Elementos/Botoes/BotaoPrimario/BotaoPrimario";
+import Titulo from "../components/Elementos/Textos/Titulo/Titulo";
 
 const Perfil = () => {
   const navigate = useNavigate();

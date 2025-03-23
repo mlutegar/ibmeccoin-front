@@ -11,6 +11,8 @@ import Cadastro from "./pages/Cadastro";
 import TokenHandler from "./pages/TokenHandler";
 import Grupo from "./pages/Grupo";
 import QrCode from "./pages/QrCode";
+import DoarPontosAlunoPage from "./pages/DoarPontosAlunoPage";
+import DoarPontosGrupoPage from "./pages/DoarPontosGrupoPage";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -20,10 +22,13 @@ root.render(
     <HashRouter>
       <Routes>
         <Route path="/" element={<Home/>} />
-        <Route path="/professor" element={<HomeProfessor/>} />
-        <Route path="/qr-code" element={<QrCode/>} />
         <Route path="/token/:tokenId" element={<TokenHandler />} />
         <Route path="/grupo" element={<Grupo/>} />
+
+        <Route path="/professor" element={<HomeProfessor/>} />
+        <Route path="/qr-code" element={<QrCode/>} />
+        <Route path="/doar-pontos-aluno" element={<DoarPontosAlunoPage/>} />
+        <Route path="/doar-pontos-grupo" element={<DoarPontosGrupoPage/>} />
 
         <Route path="/login" element={<Login/>} />
         <Route path="/cadastro" element={<Cadastro/>} />
