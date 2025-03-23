@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import Base from "./Base";
 import { useNavigate } from "react-router-dom";
 import QrCode from "../components/QrCode/QrCode";
-import Textos from "../components/Textos/Textos";
+import Titulo from "../components/Textos/Titulo/Titulo";
 
 const HomeProfessor = () => {
     const navigate = useNavigate();
@@ -16,11 +16,9 @@ const HomeProfessor = () => {
 
     return (
         <Base>
-            <Textos
-                versao={3}
-            >
+            <Titulo>
                 QRCODE
-            </Textos>
+            </Titulo>
             <QrCode />
         </Base>
     );

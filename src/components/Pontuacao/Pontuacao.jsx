@@ -1,5 +1,4 @@
 import {Style} from "./Style";
-import Textos from "../Textos/Textos";
 import React, {useEffect, useState} from "react";
 import API_BASE_URL from "../../config";
 import Cookies from "js-cookie";

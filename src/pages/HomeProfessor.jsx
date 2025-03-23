@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import QrCode from "../components/QrCode/QrCode";
 import Cookies from "js-cookie";
 import Botao from "../components/Botao/Botao";
+import Titulo from "../components/Textos/Titulo/Titulo";
 
 const HomeProfessor = () => {
     const navigate = useNavigate();
@@ -86,6 +87,9 @@ const HomeProfessor = () => {
 
     return (
         <Base>
+    <Titulo>
+        Atendimento e Plan.
+    </Titulo>
             <section>
                 <h2>Alunos Cadastrados</h2>
                 {alunos.length ? alunos.map(aluno => (

@@ -2,12 +2,10 @@ import { useEffect, useState } from "react";
 import Base from "./Base";
 import { useNavigate } from "react-router-dom";
 import Pontuacao from "../components/Pontuacao/Pontuacao";
-import GrupoMembros from "../components/GrupoMembros/GrupoMembros";
-import Botao from "../components/Botao/Botao";
 import {signOut} from "firebase/auth";
 import {auth} from "../config/Firebase";
-import Textos from "../components/Textos/Textos";
 import OpcoesHome from "../components/OpcoesHome/OpcoesHome";
+import Titulo from "../components/Textos/Titulo/Titulo";
 
 const Home = () => {
     const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -38,11 +36,9 @@ const Home = () => {
 
     return (
         <Base>
-            <Textos
-                versao={3}
-            >
+            <Titulo>
                 Atendimento e Plan.
-            </Textos>
+            </Titulo>
             <Pontuacao saldo={1} />
             <OpcoesHome/>
         </Base>

@@ -1,4 +1,4 @@
-import {Texto1, Texto2, Titulo, Subtitulo, SubtituloInvertido, Texto} from "./Style";
+import {Texto1, Texto2, Subtitulo, SubtituloInvertido, Texto} from "./Style";
 
 const Textos = ({children, versao = 1, tamanho, color = "white"}) => {
   if (versao === 1) {
@@ -14,14 +14,6 @@ const Textos = ({children, versao = 1, tamanho, color = "white"}) => {
         <Texto2 tamanho={tamanho} cor={color}>
           {children}
         </Texto2>
-    )
-  }
-
-  if (versao === 3) {
-    return (
-        <Titulo>
-          {children}
-        </Titulo>
     )
   }
 
