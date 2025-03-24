@@ -14,8 +14,8 @@ const Fundo = styled.div`
 
     .geral {
         display: flex;
-        justify-content: space-around;
-        padding: 0 2rem;
+        padding: 0px 2.4rem;
+        margin-bottom: 0.4rem;
     }
 
     .botao {

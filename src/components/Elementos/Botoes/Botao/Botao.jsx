@@ -57,13 +57,13 @@ const Botao = ({tipo = 1, children, versaoInvertido = false, type, onClick, subm
 
     if (tipo === 6) {
         return (
-            <SelectBotao versaoInvertido={versaoInvertido} type={type} onClick={onClick} submit={submit}>
+            <button type={type} onClick={onClick}>
                 <Textos
                     versao={4}
                 >
                     {children}
                 </Textos>
-            </SelectBotao>
+            </button>
         )
     }
 

@@ -17,6 +17,16 @@ const Cadastro = () => {
 
     const handleCadastro = async (event) => {
         const csrftoken = Cookies.get('csrftoken');
+        const body = {
+            username,
+            first_name: firstName,
+            last_name: lastName,
+            email,
+            password: senha
+        }
+        const jsonBody = JSON.stringify(body);
+
+        console.log(jsonBody);
 
         event.preventDefault();
         try {
@@ -26,13 +36,7 @@ const Cadastro = () => {
                     "Content-Type": "application/json",
                     'X-CSRFToken': csrftoken,
                 },
-                body: JSON.stringify({
-                    username,
-                    first_name: firstName,
-                    last_name: lastName,
-                    email,
-                    password: senha
-                })
+                body: jsonBody
             });
 
             const data = await response.json();
@@ -51,11 +55,11 @@ const Cadastro = () => {
     };
 
     return (
-        <Base>
+        <div style={{ textAlign: "center", display: "flex", gap: "2rem", flexDirection: "column", alignItems: "center" }}>
             <Logo/>
-            <form onSubmit={handleCadastro}>
+            <form onSubmit={handleCadastro} style={{gap: "2rem", display: "flex", flexDirection: "column"}}>
                 <InputLabel
-                    label={"Usuário"}
+                    label={"Mátricula"}
                     placeholder={"Digite seu usuário"}
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
@@ -87,7 +91,7 @@ const Cadastro = () => {
                 />
                 <Botao type="submit">Cadastrar</Botao>
             </form>
-        </Base>
+        </div>
     );
 };
 

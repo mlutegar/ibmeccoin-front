@@ -69,7 +69,6 @@ const GrupoMembros = () => {
             {error ? (
                 <>
                     <Message>{error}</Message>
-                    <ConvitesLista/>
                     <CriarGrupo/>
                 </>
             ) : (

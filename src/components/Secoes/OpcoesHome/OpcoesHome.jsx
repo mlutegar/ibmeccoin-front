@@ -1,7 +1,7 @@
 import {Container} from "./Style";
-import CardGrupo from "../../Elementos/Cards/Aluno/CardGrupo/CardGrupo";
-import CardQrCode from "../../Elementos/Cards/Aluno/CardQrCode/CardQrCode";
-import CardLoja from "../../Elementos/Cards/Aluno/CardLoja/CardLoja";
+import CardGrupo from "../../Elementos/Cards/Opcoes/Aluno/CardGrupo/CardGrupo";
+import CardQrCode from "../../Elementos/Cards/Opcoes/Aluno/CardQrCode/CardQrCode";
+import CardLoja from "../../Elementos/Cards/Opcoes/Aluno/CardLoja/CardLoja";
 
 const OpcoesHome = () => {
     return (

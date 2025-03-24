@@ -5,13 +5,13 @@ export const LoginStyle = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    height: 100vh;
+    gap: 2rem;
     
     form{
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 16px;
+        gap: 2rem;
         margin-top: 16px;
     }
 `;

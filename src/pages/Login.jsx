@@ -7,6 +7,8 @@ import Botao from "../components/Elementos/Botoes/Botao/Botao";
 import API_BASE_URL from "../config";
 import {LoginStyle} from "./Style";
 import Cookies from 'js-cookie';
+import BotaoPrimario from "../components/Elementos/Botoes/BotaoPrimario/BotaoPrimario";
+import BotaoSecundario from "../components/Elementos/Botoes/BotaoSecundario/BotaoSecundario";
 
 const Login = () => {
     const [username, setUsername] = useState('');
@@ -105,13 +107,12 @@ const Login = () => {
                         value={senha}
                         onChange={(e) => setPassword(e.target.value)}
                     />
-                    <Botao type="submit">Entrar</Botao>
-                    <Botao
-                        versaoInvertido={true}
+                    <BotaoPrimario type="submit">Entrar</BotaoPrimario>
+                    <BotaoSecundario
                         onClick={() => navigate("/cadastro")}
                     >
                         Criar conta
-                    </Botao>
+                    </BotaoSecundario>
                 </form>
             </LoginStyle>
     );

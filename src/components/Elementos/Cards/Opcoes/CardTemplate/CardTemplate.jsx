@@ -1,6 +1,6 @@
 import {Fundo} from "./Style";
-import Textos from "../../Textos/Textos";
-import Botao from "../../Botoes/Botao/Botao";
+import Textos from "../../../Textos/Textos";
+import Botao from "../../../Botoes/Botao/Botao";
 import {useNavigate} from "react-router-dom";
 
 const CardTemplate = ({svg, titulo, texto, botao, href}) => {

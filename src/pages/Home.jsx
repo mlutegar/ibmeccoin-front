@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import Base from "./Base";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import Pontuacao from "../components/Secoes/Pontuacao/Pontuacao";
 import {signOut} from "firebase/auth";
 import {auth} from "../config/Firebase";
@@ -13,34 +13,34 @@ const Home = () => {
 
     useEffect(() => {
         const token = localStorage.getItem("token");
+        const tipo = localStorage.getItem("tipo");
 
         if (!token) {
             navigate("/login");
-        } else {
-            setIsAuthenticated(true);
         }
+
+        if (tipo === "professor") {
+            navigate("/professor");
+        }
+
     }, [navigate]);
-
-    const handleLogout = (e) =>{
-        e.preventDefault();
-        signOut(auth);
-        window.localStorage.removeItem("token");
-        window.localStorage.removeItem("username");
-        window.localStorage.removeItem("alunoId");
-
-        // esperar um pouco antes de redirecionar
-        setTimeout(() => {
-            window.location.reload();
-        }, 500);
-    }
 
     return (
         <Base>
             <Titulo>
                 Atendimento e Plan.
             </Titulo>
-            <Pontuacao saldo={1} />
+            <div style={{marginTop: "1rem"}}>
+            </div>
+            <Pontuacao saldo={1}/>
+            <div style={{marginTop: "1rem"}}>
+            </div>
+            <Titulo>
+                OPÇÕES
+            </Titulo>
+
             <OpcoesHome/>
+
         </Base>
     );
 };
