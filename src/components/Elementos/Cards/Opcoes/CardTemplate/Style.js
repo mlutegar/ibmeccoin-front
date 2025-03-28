@@ -28,6 +28,7 @@ const Fundo = styled.div`
         flex-direction: column;
         align-items: flex-start;
         margin-left: 1rem;
+        justify-content: center;
     }
 `;
 

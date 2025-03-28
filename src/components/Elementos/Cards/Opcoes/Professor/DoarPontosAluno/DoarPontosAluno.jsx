@@ -8,9 +8,9 @@ const DoarPontosAluno = () => {
             <CardTemplate
                 svg={<Pessoa/>
                 }
-                titulo={"Pontos Grupo"}
-                texto={"Doe ponto para o grupo"}
-                botao={"Ir para a página"}
+                titulo={"DOAR PONTOS"}
+                texto={"Doe pontos para grupos ou pessoal"}
+                botao={"Ir para a tela de doação"}
                 href="/doar-pontos-grupo"
             />
         </DoarPontosAlunoStyle>

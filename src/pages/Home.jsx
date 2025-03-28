@@ -1,14 +1,11 @@
-import {useEffect, useState} from "react";
+import {useEffect} from "react";
 import Base from "./Base";
 import {useNavigate} from "react-router-dom";
 import Pontuacao from "../components/Secoes/Pontuacao/Pontuacao";
-import {signOut} from "firebase/auth";
-import {auth} from "../config/Firebase";
 import OpcoesHome from "../components/Secoes/OpcoesHome/OpcoesHome";
 import Titulo from "../components/Elementos/Textos/Titulo/Titulo";
 
 const Home = () => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
     const navigate = useNavigate();
 
     useEffect(() => {

@@ -19,9 +19,9 @@ const CardLoja = () => {
                         </defs>
                     </svg>
                 }
-                titulo={"Loja"}
-                texto={"Veja a loja"}
-                botao={"Ver Loja"}
+                titulo={"LOJA"}
+                texto={"Adicione produtos a loja de troca"}
+                botao={"Ir para a tela de loja"}
                 href="/"
             />
         </CardLojaStyle>

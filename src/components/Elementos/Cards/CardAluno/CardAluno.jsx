@@ -24,7 +24,7 @@ const CardAluno = ({ aluno }) => {
                 subtitulo={
                     saldo !== null ? `Saldo ${saldo} IC` : "Carregando saldo..."
                 }
-                botaoTexto={"Doar pontos"}
+                botaoTexto={"DOAR PONTOS"}
                 onClick={() => navigate("/doar", { state: { aluno } })}
             />
         </CardAlunoStyle>

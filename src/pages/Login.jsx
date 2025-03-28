@@ -1,9 +1,7 @@
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import Base from "./Base";
 import {Logo} from "../components/Icones/Logo";
 import InputLabel from "../components/Elementos/InputLabel/InputLabel";
-import Botao from "../components/Elementos/Botoes/Botao/Botao";
 import API_BASE_URL from "../config";
 import {LoginStyle} from "./Style";
 import Cookies from 'js-cookie';
@@ -44,7 +42,6 @@ const Login = () => {
                         localStorage.setItem("tipo", "professor");
                         navigate("/professor");
                     } else {
-                        // Caso o tipo não esteja definido, redireciona para uma rota padrão
                         navigate("/");
                     }
                 } else {

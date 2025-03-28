@@ -19,9 +19,9 @@ const CardQrCodeProfessor = () => {
                         </defs>
                     </svg>
                 }
-                titulo={"QrCode"}
-                texto={"Leia o QrCode"}
-                botao={"Ler QrCode"}
+                titulo={"QRCODE"}
+                texto={"Clique aqui para gerar um qr code"}
+                botao={"Ir para a tela de QrCode"}
                 href="/qr-code"
             />
         </CardQrCodeProfessorStyle>

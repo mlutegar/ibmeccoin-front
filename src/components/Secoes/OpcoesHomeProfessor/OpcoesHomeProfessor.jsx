@@ -9,7 +9,7 @@ const OpcoesHomeProfessor = () => {
         <OpcoesHomeProfessorStyle>
             <CardQrCodeProfessor/>
             <DoarPontosAluno/>
-            <DoarPontosGrupo/>
+            {/*<DoarPontosGrupo/>*/}
             <CardLoja/>
         </OpcoesHomeProfessorStyle>
     )

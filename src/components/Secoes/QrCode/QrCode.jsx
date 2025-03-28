@@ -5,10 +5,12 @@ import Cookies from "js-cookie";
 import {Style} from "./Style";
 import Botao from "../../Elementos/Botoes/Botao/Botao";
 import InputLabel from "../../Elementos/InputLabel/InputLabel";
+import BotaoSecundario from "../../Elementos/Botoes/BotaoSecundario/BotaoSecundario";
 
 const QrCode = () => {
     const [tokenId, setTokenId] = useState("");
     const [quantidade, setQuantidade] = useState("");
+    const [label, setLabel] = useState("");  // Novo estado para a label
     const [isRunning, setIsRunning] = useState(false);
     const intervalRef = useRef(null);
 
@@ -25,12 +27,16 @@ const QrCode = () => {
                     "Content-Type": "application/json",
                     'X-CSRFToken': csrftoken,
                 },
-                body: JSON.stringify({ quantidade_ic: Number(quantidade) }),
+                // Envia a label junto com a quantidade
+                body: JSON.stringify({
+                    quantidade_ic: Number(quantidade),
+                    label: label
+                }),
             });
             if (response.ok) {
                 const data = await response.json();
                 console.log("Token criado:", data);
-                setTokenId(`https://gtddjango.fly.dev'/#/token/${data.id}`);
+                setTokenId(`https://gtddjango.fly.dev/#/token/${data.id}`);
             } else {
                 const errorData = await response.json();
                 console.error("Erro ao criar token:", errorData);
@@ -44,6 +50,10 @@ const QrCode = () => {
     const startQRCode = () => {
         if (!quantidade || Number(quantidade) <= 0) {
             alert("Por favor, insira uma quantidade válida de IC.");
+            return;
+        }
+        if (!label) {
+            alert("Por favor, insira uma label para o token.");
             return;
         }
         setIsRunning(true);
@@ -62,7 +72,10 @@ const QrCode = () => {
         }
     };
 
-    // Limpeza do intervalo caso o componente seja desmontado
+    const voltarHome = () => {
+        window.location.href = '/';
+    }
+
     useEffect(() => {
         return () => {
             if (intervalRef.current) clearInterval(intervalRef.current);
@@ -73,27 +86,40 @@ const QrCode = () => {
         <Style>
             <div className={"qrcode"}>
                 {tokenId ? (
-                    <QRCodeCanvas value={String(tokenId)} size={200}/>
-                ) : (
-                    <></>
-                )}
+                        <QRCodeCanvas value={String(tokenId)} size={200}/>
+                    ) :
+                    <div className={'qrcode-vazio'}>
+                        Clique para gerar qrcode
+                    </div>
+                }
             </div>
             <div>
                 <InputLabel
-                    label = "Quantidade de IC:"
-                    placeholder = "Insira a quantidade de IC"
-                    value = {quantidade}
-                    type = "number"
-                    onChange = {(e) => setQuantidade(e.target.value)}
+                    label="Quantidade de IC:"
+                    placeholder="Insira a quantidade de IC"
+                    value={quantidade}
+                    type="number"
+                    onChange={(e) => setQuantidade(e.target.value)}
+                    disabled={isRunning}
+                />
+                <InputLabel
+                    label="Label do Token:"  // Novo input para a label
+                    placeholder="Insira uma label"
+                    value={label}
+                    type="text"
+                    onChange={(e) => setLabel(e.target.value)}
                     disabled={isRunning}
                 />
             </div>
-            <div style={{marginTop: "20px"}}>
+            <div>
                 {!isRunning ? (
                     <Botao onClick={startQRCode}>Iniciar QR Code</Botao>
                 ) : (
                     <Botao onClick={stopQRCode}>Parar QR Code</Botao>
                 )}
+            </div>
+            <div>
+                <BotaoSecundario onClick={voltarHome}>Cancelar</BotaoSecundario>
             </div>
         </Style>
     );
