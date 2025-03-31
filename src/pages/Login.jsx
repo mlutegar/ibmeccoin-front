@@ -11,11 +11,14 @@ import BotaoSecundario from "../components/Elementos/Botoes/BotaoSecundario/Bota
 const Login = () => {
     const [username, setUsername] = useState('');
     const [senha, setPassword] = useState('');
+    const [errorMessage, setErrorMessage] = useState('');
     const navigate = useNavigate();
 
     const handleLogin = async (event) => {
         const csrftoken = Cookies.get('csrftoken');
         event.preventDefault();
+        setErrorMessage(''); // Limpa o erro anterior ao tentar novo login
+
         try {
             const response = await fetch(`${API_BASE_URL}/api/login/`, {
                 method: "POST",
@@ -45,13 +48,13 @@ const Login = () => {
                         navigate("/");
                     }
                 } else {
-                    console.warn("Usuário não encontrado.");
+                    setErrorMessage("Usuário não encontrado.");
                 }
             } else {
-                alert("Erro no login: " + (data.detail || "Verifique suas credenciais."));
+                setErrorMessage("Erro no login: " + (data.detail || "Verifique suas credenciais."));
             }
         } catch (error) {
-            alert("Erro ao conectar com o servidor.");
+            setErrorMessage("Erro ao conectar com o servidor.");
             console.error(error);
         }
     };
@@ -78,40 +81,55 @@ const Login = () => {
                     return aluno;
                 } else {
                     console.warn("Aluno não encontrado.");
+                    return null;
                 }
             } else {
                 console.error("Erro ao buscar alunos:", await response.json());
+                return null;
             }
         } catch (error) {
             console.error("Erro ao conectar com a API de alunos:", error);
+            return null;
         }
     };
 
     return (
-            <LoginStyle>
-                <Logo/>
-                <form onSubmit={handleLogin}>
-                    <InputLabel
-                        label={"Matricula"}
-                        placeholder={"Digite sua Matricula"}
-                        value={username}
-                        onChange={(e) => setUsername(e.target.value)}
-                    />
-                    <InputLabel
-                        label={"Senha"}
-                        placeholder={"Digite sua senha"}
-                        type="password"
-                        value={senha}
-                        onChange={(e) => setPassword(e.target.value)}
-                    />
-                    <BotaoPrimario type="submit">Entrar</BotaoPrimario>
-                    <BotaoSecundario
-                        onClick={() => navigate("/cadastro")}
-                    >
-                        Criar conta
-                    </BotaoSecundario>
-                </form>
-            </LoginStyle>
+        <LoginStyle>
+            <Logo/>
+            <form onSubmit={handleLogin}>
+                {errorMessage && (
+                    <div className="error-message" style={{
+                        backgroundColor: "#ffebee",
+                        color: "#d32f2f",
+                        padding: "10px",
+                        borderRadius: "4px",
+                        marginBottom: "15px",
+                        border: "1px solid #f5c6cb"
+                    }}>
+                        {errorMessage}
+                    </div>
+                )}
+                <InputLabel
+                    label={"Matricula"}
+                    placeholder={"Digite sua Matricula"}
+                    value={username}
+                    onChange={(e) => setUsername(e.target.value)}
+                />
+                <InputLabel
+                    label={"Senha"}
+                    placeholder={"Digite sua senha"}
+                    type="password"
+                    value={senha}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+                <BotaoPrimario type="submit">Entrar</BotaoPrimario>
+                <BotaoSecundario
+                    onClick={() => navigate("/cadastro")}
+                >
+                    Criar conta
+                </BotaoSecundario>
+            </form>
+        </LoginStyle>
     );
 }
 

@@ -1,7 +1,14 @@
 import { CardLojaStyle } from "./Style";
 import CardTemplate from "../../CardTemplate/CardTemplate";
+import {useNavigate} from "react-router-dom";
 
 const CardLoja = () => {
+    const navigate = useNavigate();
+
+    const handleHref = () => {
+        navigate("/");
+    }
+
     return (
         <CardLojaStyle>
             <CardTemplate
@@ -22,7 +29,7 @@ const CardLoja = () => {
                 titulo={"LOJA"}
                 texto={"Adicione produtos a loja de troca"}
                 botao={"Ir para a tela de loja"}
-                href="/"
+                onClick={handleHref}
             />
         </CardLojaStyle>
     );

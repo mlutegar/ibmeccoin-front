@@ -1,13 +1,10 @@
 import {Fundo} from "./Style";
 import Textos from "../../../Textos/Textos";
 import Botao from "../../../Botoes/Botao/Botao";
-import {useNavigate} from "react-router-dom";
 
-const CardTemplate = ({svg, titulo, texto, botao, href}) => {
-    const navigate = useNavigate();
-
+const CardTemplate = ({svg, titulo, texto, botao, href, onClick}) => {
     return (
-        <Fundo onClick={() => navigate(href)}>
+        <Fundo onClick={onClick}>
             <div className={"geral"}>
                 <div>
                     {svg}

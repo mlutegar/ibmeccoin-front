@@ -10,6 +10,7 @@ import {
 } from './Style';
 import { useNavigate } from 'react-router-dom';
 import Textos from "../../Elementos/Textos/Textos";
+import SubtituloInvertido from "../../Elementos/Textos/SubtituloInvertido/SubtituloInvertido";
 
 const Header = () => {
     const [user] = useState(localStorage.getItem('username'));
@@ -21,15 +22,23 @@ const Header = () => {
         setIsNavOpen(prevState => !prevState);
     };
 
+    const handleToHome = () => {
+        if (tipo === "aluno") {
+            navigate('/');
+        } else {
+            navigate('/professor');
+        }
+    }
+
     return (
         <Nav>
             <div className={`navbar ${isNavOpen ? 'open' : 'close'}`}>
                 <HeaderContent>
-                    <Textos
-                        versao={5}
+                    <SubtituloInvertido
+                        onClick={handleToHome}
                     >
                         Olá, {user}
-                    </Textos>
+                    </SubtituloInvertido>
 
                     {/* Exibe o Menu ou MenuClose conforme o estado */}
                     {!isNavOpen ? (

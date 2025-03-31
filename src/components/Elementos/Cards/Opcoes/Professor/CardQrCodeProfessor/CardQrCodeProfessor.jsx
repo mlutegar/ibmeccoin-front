@@ -1,7 +1,14 @@
 import { CardQrCodeProfessorStyle } from "./Style";
 import CardTemplate from "../../CardTemplate/CardTemplate";
+import {useNavigate} from "react-router-dom";
 
 const CardQrCodeProfessor = () => {
+    const navigate = useNavigate();
+
+    const handleHref = () => {
+        navigate("/qr-code");
+    }
+
     return (
         <CardQrCodeProfessorStyle>
             <CardTemplate
@@ -22,7 +29,7 @@ const CardQrCodeProfessor = () => {
                 titulo={"QRCODE"}
                 texto={"Clique aqui para gerar um qr code"}
                 botao={"Ir para a tela de QrCode"}
-                href="/qr-code"
+                onClick={handleHref}
             />
         </CardQrCodeProfessorStyle>
     );

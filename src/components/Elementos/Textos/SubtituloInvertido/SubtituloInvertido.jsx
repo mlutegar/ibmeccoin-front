@@ -1,8 +1,8 @@
 import { SubtituloInvertidoStyle } from "./Style";
 
-const SubtituloInvertido = ({children}) => {
+const SubtituloInvertido = ({children, onClick}) => {
     return (
-        <SubtituloInvertidoStyle>
+        <SubtituloInvertidoStyle onClick={onClick}>
             {children}
         </SubtituloInvertidoStyle>
     );

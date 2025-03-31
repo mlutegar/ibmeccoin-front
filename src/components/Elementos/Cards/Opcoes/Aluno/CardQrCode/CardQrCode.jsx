@@ -20,6 +20,11 @@ const CardQrCode = () => {
         setCameraActive(false);
     };
 
+    const handleCameraActive = () => {
+        setCameraActive(true);
+        console.log("Camera ativa");
+    }
+
     return (
         <CardQrCodeStyle>
             <CardTemplate
@@ -29,7 +34,7 @@ const CardQrCode = () => {
                 titulo={"QrCode"}
                 texto={"Leia o QrCode"}
                 botao={"Ler QrCode"}
-                onClick={() => setCameraActive(true)}
+                onClick={handleCameraActive}
             />
 
             {cameraActive && (

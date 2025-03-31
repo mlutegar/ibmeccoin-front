@@ -1,7 +1,14 @@
 import { CardGrupoStyle } from "./Style";
 import CardTemplate from "../../CardTemplate/CardTemplate";
+import {useNavigate} from "react-router-dom";
 
 const CardGrupo = () => {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate("/grupo");
+    }
+
     return (
         <CardGrupoStyle>
             <CardTemplate
@@ -22,7 +29,7 @@ const CardGrupo = () => {
                 titulo={"Grupo"}
                 texto={"Veja o seu grupo"}
                 botao={"Ver Grupo"}
-                href="/grupo"
+                onClick={handleClick}
             />
         </CardGrupoStyle>
     );
