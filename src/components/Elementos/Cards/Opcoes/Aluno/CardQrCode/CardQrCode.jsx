@@ -1,18 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { CardQrCodeStyle } from "./Style";
 import CardTemplate from "../../CardTemplate/CardTemplate";
 import MyQrReader from "../../../../../Secoes/MyQrReader/MyQrReader";
-import {QrCode} from "../../../../../Icones/QrCode";
+import { QrCode } from "../../../../../Icones/QrCode";
 
 const CardQrCode = () => {
     const [cameraActive, setCameraActive] = useState(false);
     const [qrResult, setQrResult] = useState("");
+    const [useFrontCamera, setUseFrontCamera] = useState(false); // Estado para controlar a câmera
 
     const handleScanSuccess = (data) => {
         setQrResult(data);
         setCameraActive(false);
         console.log("QR Code lido:", data);
-        // Aqui você pode tratar o resultado, como navegar ou atualizar estado
     };
 
     const handleScanError = (err) => {
@@ -23,14 +23,16 @@ const CardQrCode = () => {
     const handleCameraActive = () => {
         setCameraActive(true);
         console.log("Camera ativa");
-    }
+    };
+
+    const toggleCamera = () => {
+        setUseFrontCamera((prev) => !prev); // Alterna entre câmeras
+    };
 
     return (
         <CardQrCodeStyle>
             <CardTemplate
-                svg={
-                    <QrCode/>
-                }
+                svg={<QrCode />}
                 titulo={"QrCode"}
                 texto={"Leia o QrCode"}
                 botao={"Ler QrCode"}
@@ -79,9 +81,29 @@ const CardQrCode = () => {
                         >
                             X
                         </button>
+
+                        <button
+                            onClick={toggleCamera} // Botão para alternar câmera
+                            style={{
+                                position: "absolute",
+                                top: "0.5rem",
+                                left: "0.5rem",
+                                background: "blue",
+                                color: "#fff",
+                                border: "none",
+                                borderRadius: "50%",
+                                width: "25px",
+                                height: "25px",
+                                cursor: "pointer",
+                            }}
+                        >
+                            ↻
+                        </button>
+
                         <MyQrReader
                             onScanSuccess={handleScanSuccess}
                             onScanError={handleScanError}
+                            facingMode={useFrontCamera ? "user" : "environment"} // Passando a câmera frontal ou traseira
                         />
                     </div>
                 </div>

@@ -7,7 +7,7 @@ const DoarPontosAluno = () => {
     const navigate = useNavigate();
 
     const handleHref = () => {
-        navigate("/doar-pontos-grupo");
+        navigate("/doar-pontos-aluno");
     }
 
     return (

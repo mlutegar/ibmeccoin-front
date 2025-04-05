@@ -12,6 +12,7 @@ const TokenHandler = () => {
 
         const processToken = async () => {
             const csrftoken = Cookies.get('csrftoken');
+            const alunoId = localStorage.getItem("alunoId");
 
             try {
                 // Chama o endpoint de processamento do token
@@ -22,7 +23,8 @@ const TokenHandler = () => {
                         'X-CSRFToken': csrftoken,
                     },
                     body: JSON.stringify({
-                        turma_id: 1  // Você pode ajustar esse valor conforme sua lógica
+                        turma_id: 1,
+                        aluno_id: alunoId
                     })
                 });
 
@@ -36,7 +38,7 @@ const TokenHandler = () => {
                 }
             } catch (error) {
                 console.error("Erro na requisição:", error);
-                alert("Erro na conexão com a API.");
+                navigate("/");
             }
         };
 

@@ -6,7 +6,6 @@ import CardLoja from "../../Elementos/Cards/Opcoes/Aluno/CardLoja/CardLoja";
 const OpcoesHome = () => {
     return (
         <Container>
-            <CardQrCode/>
             <CardGrupo/>
             <CardLoja/>
         </Container>
