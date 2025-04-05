@@ -3,6 +3,7 @@ import API_BASE_URL from "../../../config";
 import { StyleForm, StyleInput } from "./Style";
 import Botao from "../../Elementos/Botoes/Botao/Botao";
 import Cookies from "js-cookie";
+import BotaoPrimario from "../../Elementos/Botoes/BotaoPrimario/BotaoPrimario";
 
 const ConviteForm = () => {
     const [conviteId, setConviteId] = useState("");
@@ -55,7 +56,7 @@ const ConviteForm = () => {
                 value={conviteId}
                 onChange={(e) => setConviteId(e.target.value)}
             />
-            <Botao type="submit">Enviar Convite</Botao>
+            <BotaoPrimario type="submit">Enviar Convite</BotaoPrimario>
         </StyleForm>
     );
 };

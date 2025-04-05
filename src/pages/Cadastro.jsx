@@ -6,6 +6,7 @@ import InputLabel from "../components/Elementos/InputLabel/InputLabel";
 import Botao from "../components/Elementos/Botoes/Botao/Botao";
 import API_BASE_URL from "../config";
 import Cookies from "js-cookie";
+import BotaoPrimario from "../components/Elementos/Botoes/BotaoPrimario/BotaoPrimario";
 
 const Cadastro = () => {
     const [username, setUsername] = useState("");
@@ -89,7 +90,7 @@ const Cadastro = () => {
                     value={senha}
                     onChange={(e) => setSenha(e.target.value)}
                 />
-                <Botao type="submit">Cadastrar</Botao>
+                <BotaoPrimario type="submit">Cadastrar</BotaoPrimario>
             </form>
         </div>
     );

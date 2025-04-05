@@ -6,6 +6,7 @@ import {Style} from "./Style";
 import Botao from "../../Elementos/Botoes/Botao/Botao";
 import InputLabel from "../../Elementos/InputLabel/InputLabel";
 import BotaoSecundario from "../../Elementos/Botoes/BotaoSecundario/BotaoSecundario";
+import BotaoPrimario from "../../Elementos/Botoes/BotaoPrimario/BotaoPrimario";
 
 const QrCode = () => {
     const [tokenId, setTokenId] = useState("");
@@ -113,9 +114,9 @@ const QrCode = () => {
             </div>
             <div>
                 {!isRunning ? (
-                    <Botao onClick={startQRCode}>Iniciar QR Code</Botao>
+                    <BotaoPrimario onClick={startQRCode}>Iniciar QR Code</BotaoPrimario>
                 ) : (
-                    <Botao onClick={stopQRCode}>Parar QR Code</Botao>
+                    <BotaoPrimario onClick={stopQRCode}>Parar QR Code</BotaoPrimario>
                 )}
             </div>
             <div>

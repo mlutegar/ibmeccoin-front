@@ -6,7 +6,7 @@ const InputLabel = ({label, placeholder, value, type, onChange, disabled}) => (
         <Label>
             {label}
         </Label>
-        <InputPuro texto={placeholder} value={value} type={type} onChange={onChange} disabled={disabled}/>
+        <InputPuro placeholder={placeholder} value={value} type={type} onChange={onChange} disabled={disabled}/>
     </Container>
 )
 

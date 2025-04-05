@@ -109,7 +109,7 @@ const Doar = () => {
                 </div>
 
                 <InputPuro
-                    texto={"Quantidade IC"}
+                    placeholder={"Quantidade IC"}
                     value={doacoes[aluno?.id] || ""}
                     type={"number"}
                     onChange={(e) =>

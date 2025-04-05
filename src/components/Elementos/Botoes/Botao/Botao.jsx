@@ -1,23 +1,7 @@
-import {BotaoPrimario, BotaoPrimarioInvertido, BotaoSecundario, MiniBotao, MiniBotaoInvertido, SelectBotao, BackBotao} from "./Style";
+import {BotaoSecundario} from "./Style";
 import Textos from "../../Textos/Textos";
 
-const Botao = ({tipo = 1, children, versaoInvertido = false, type, onClick, submit}) => {
-
-    if (tipo === 1) {
-        return (
-            <BotaoPrimario versaoInvertido={versaoInvertido} type={type} onClick={onClick} submit={submit}>
-                {children}
-            </BotaoPrimario>
-        )
-    }
-
-    if (tipo === 2) {
-        return (
-            <BotaoPrimarioInvertido versaoInvertido={versaoInvertido} type={type} onClick={onClick} submit={submit}>
-                {children}
-            </BotaoPrimarioInvertido>
-        )
-    }
+const Botao = ({tipo = 3, children, type, onClick, submit}) => {
 
     if (tipo === 3) {
         return (
@@ -28,54 +12,6 @@ const Botao = ({tipo = 1, children, versaoInvertido = false, type, onClick, subm
                     {children}
                 </Textos>
             </BotaoSecundario>
-        )
-    }
-
-    if (tipo === 4) {
-        return (
-            <MiniBotao versaoInvertido={versaoInvertido} type={type} onClick={onClick} submit={submit}>
-                <Textos
-                    versao={4}
-                >
-                    {children}
-                </Textos>
-            </MiniBotao>
-        )
-    }
-
-    if (tipo === 5) {
-        return (
-            <MiniBotaoInvertido versaoInvertido={versaoInvertido} type={type} onClick={onClick} submit={submit}>
-                <Textos
-                    versao={4}
-                >
-                    {children}
-                </Textos>
-            </MiniBotaoInvertido>
-        )
-    }
-
-    if (tipo === 6) {
-        return (
-            <button type={type} onClick={onClick}>
-                <Textos
-                    versao={4}
-                >
-                    {children}
-                </Textos>
-            </button>
-        )
-    }
-
-    if (tipo === 7) {
-        return (
-            <BackBotao versaoInvertido={versaoInvertido} type={type} onClick={onClick} submit={submit}>
-                <Textos
-                    versao={6}
-                >
-                    {children}
-                </Textos>
-            </BackBotao>
         )
     }
 }
