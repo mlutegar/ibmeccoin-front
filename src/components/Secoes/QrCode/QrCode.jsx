@@ -37,7 +37,8 @@ const QrCode = () => {
             if (response.ok) {
                 const data = await response.json();
                 console.log("Token criado:", data);
-                setTokenId(`https://gtddjango.fly.dev/#/token/${data.id}`);
+                // setTokenId(`https://gtddjango.fly.dev/#/token/${data.id}`);
+                setTokenId(`http://localhost:3005/#/token/${data.id}`);
             } else {
                 const errorData = await response.json();
                 console.error("Erro ao criar token:", errorData);
@@ -73,6 +74,19 @@ const QrCode = () => {
         }
     };
 
+    // Função para copiar o link para a área de transferência
+    const copyToClipboard = () => {
+        if (tokenId) {
+            navigator.clipboard.writeText(tokenId)
+                .then(() => {
+                    console.log("Link copiado para a área de transferência!");
+                })
+                .catch(err => {
+                    console.error('Erro ao copiar: ', err);
+                });
+        }
+    };
+
     const voltarHome = () => {
         window.location.href = '/';
     }
@@ -87,12 +101,24 @@ const QrCode = () => {
         <Style>
             <div className={"qrcode"}>
                 {tokenId ? (
+                    <>
                         <QRCodeCanvas value={String(tokenId)} size={200}/>
-                    ) :
+                        <div className="link-container">
+                            <p className="token-link">{tokenId}</p>
+                            <button
+                                className="copy-button"
+                                onClick={copyToClipboard}
+                                title="Copiar link"
+                            >
+                                Copiar Link
+                            </button>
+                        </div>
+                    </>
+                ) : (
                     <div className={'qrcode-vazio'}>
                         Clique para gerar qrcode
                     </div>
-                }
+                )}
             </div>
             <div>
                 <InputLabel

@@ -35,6 +35,30 @@ const Style = styled.div`
         font-weight: 600;
         line-height: normal;
     }
+
+    .link-container {
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .token-link {
+        word-break: break-all;
+        font-size: 14px;
+        margin-bottom: 8px;
+    }
+
+    .copy-button {
+        background-color: #f0f0f0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 5px 10px;
+        cursor: pointer;
+        font-size: 12px;
+    }
+
+    .copy-button:hover {
+        background-color: #e0e0e0;
+    }
 `;
 
 export {Style};

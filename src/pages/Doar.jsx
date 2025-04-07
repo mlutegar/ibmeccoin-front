@@ -57,7 +57,7 @@ const Doar = () => {
                     valor: Number(quantidade),
                     tipo: "C", // 'C' para crédito (doação)
                     aluno: alunoId,
-                    turma: "1" // Ajuste conforme necessário
+                    turma: 2 // Ajuste conforme necessário
                 })
             });
             if (response.ok) {

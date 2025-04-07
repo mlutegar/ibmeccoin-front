@@ -33,15 +33,16 @@ const TokenHandler = () => {
 
         try {
             // Chama o endpoint de processamento do token
-            const response = await fetch(`${API_BASE_URL}/api/processar-token/${token}/`, {
+            const response = await fetch(`${API_BASE_URL}/api/processar-token/`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                     'X-CSRFToken': csrftoken,
                 },
                 body: JSON.stringify({
-                    turma_id: 1,
-                    aluno_id: alunoId
+                    turma_id: 2,
+                    aluno_id: alunoId,
+                    token_id: token,
                 })
             });
 

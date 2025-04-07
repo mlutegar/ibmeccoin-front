@@ -22,7 +22,7 @@ const CriarGrupo = () => {
             nome,
             limite_aluno: 5,
             saldo: 0,     // O saldo inicia com 0
-            turma: 1,     // A turma é sempre 1
+            turma: 2,     // A turma é sempre 1
             alunos: [Number(alunoId)]  // Adiciona o aluno que criou o grupo
         };
 
