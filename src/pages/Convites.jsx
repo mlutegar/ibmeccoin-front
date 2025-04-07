@@ -21,7 +21,7 @@ const Convites = () => {
                         Nome Grupo
                     </SubtituloInvertido>
                     <InputPuro
-                        texto="Digite o nome do grupo"
+                        placeholder="Digite o nome do grupo"
                         value={""}
                         type={"text"}
                         onChange={() => {

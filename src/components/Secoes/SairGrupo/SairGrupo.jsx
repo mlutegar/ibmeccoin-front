@@ -2,6 +2,7 @@ import { useState } from "react";
 import API_BASE_URL from "../../../config";
 import Cookies from "js-cookie";
 import Botao from "../../Elementos/Botoes/Botao/Botao";
+import BotaoPrimario from "../../Elementos/Botoes/BotaoPrimario/BotaoPrimario";
 
 const SairGrupo = ({ grupoId, membros, onSair }) => {
     const [loading, setLoading] = useState(false);
@@ -58,9 +59,9 @@ const SairGrupo = ({ grupoId, membros, onSair }) => {
     return (
         <>
             {error && <div>{error}</div>}
-            <Botao onClick={handleSair} disabled={loading}>
+            <BotaoPrimario onClick={handleSair} disabled={loading}>
                 {loading ? "Saindo..." : "Sair do Grupo"}
-            </Botao>
+            </BotaoPrimario>
         </>
     );
 };

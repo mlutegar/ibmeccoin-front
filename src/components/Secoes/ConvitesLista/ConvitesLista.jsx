@@ -3,6 +3,7 @@ import API_BASE_URL from "../../../config";
 import { Container, Lista, ItemLista, Mensagem, Erro } from "./Style";
 import Cookies from "js-cookie";
 import Botao from "../../Elementos/Botoes/Botao/Botao";
+import BotaoPrimario from "../../Elementos/Botoes/BotaoPrimario/BotaoPrimario";
 
 const ConvitesLista = () => {
     const [convites, setConvites] = useState([]);
@@ -135,9 +136,9 @@ const ConvitesLista = () => {
                             <strong>Expiração:</strong> {convite.expiracao} <br />
                             <strong>Válido:</strong> {convite.valido ? "Sim" : "Não"}
                             <hr />
-                            <Botao onClick={() => handleAceitarConvite(convite)}>
+                            <BotaoPrimario onClick={() => handleAceitarConvite(convite)}>
                                 Aceitar
-                            </Botao>
+                            </BotaoPrimario>
                         </ItemLista>
                     ))}
                 </Lista>

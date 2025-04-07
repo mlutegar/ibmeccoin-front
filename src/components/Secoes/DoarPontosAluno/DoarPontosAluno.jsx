@@ -45,7 +45,7 @@ const DoarPontosAluno = () => {
     return (
         <DoarPontosAlunoStyle>
             <InputPuro
-                texto={"pesquisar nome aluno"}
+                placeholder={"pesquisar nome aluno"}
                 value={searchTerm}
                 type={"text"}
                 onChange={(e) => setSearchTerm(e.target.value)}
