@@ -36,7 +36,7 @@ const QrCode = () => {
             if (response.ok) {
                 const data = await response.json();
                 console.log("Token criado:", data);
-                setTokenId(`https://gtddjango.fly.dev/#/token/${data.id}`);
+                setTokenId(`${API_BASE_URL}/#/token/${data.id}`);
             } else {
                 const errorData = await response.json();
                 console.error("Erro ao criar token:", errorData);
