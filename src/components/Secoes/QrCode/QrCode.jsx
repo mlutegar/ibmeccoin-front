@@ -6,6 +6,7 @@ import {Style} from "./Style";
 import Botao from "../../Elementos/Botoes/Botao/Botao";
 import InputLabel from "../../Elementos/InputLabel/InputLabel";
 import BotaoSecundario from "../../Elementos/Botoes/BotaoSecundario/BotaoSecundario";
+import BotaoPrimario from "../../Elementos/Botoes/BotaoPrimario/BotaoPrimario";
 
 const QrCode = () => {
     const [tokenId, setTokenId] = useState("");
@@ -72,6 +73,19 @@ const QrCode = () => {
         }
     };
 
+    // Função para copiar o link para a área de transferência
+    const copyToClipboard = () => {
+        if (tokenId) {
+            navigator.clipboard.writeText(tokenId)
+                .then(() => {
+                    console.log("Link copiado para a área de transferência!");
+                })
+                .catch(err => {
+                    console.error('Erro ao copiar: ', err);
+                });
+        }
+    };
+
     const voltarHome = () => {
         window.location.href = '/';
     }
@@ -86,12 +100,24 @@ const QrCode = () => {
         <Style>
             <div className={"qrcode"}>
                 {tokenId ? (
+                    <>
                         <QRCodeCanvas value={String(tokenId)} size={200}/>
-                    ) :
+                        <div className="link-container">
+                            <p className="token-link">{tokenId}</p>
+                            <button
+                                className="copy-button"
+                                onClick={copyToClipboard}
+                                title="Copiar link"
+                            >
+                                Copiar Link
+                            </button>
+                        </div>
+                    </>
+                ) : (
                     <div className={'qrcode-vazio'}>
                         Clique para gerar qrcode
                     </div>
-                }
+                )}
             </div>
             <div>
                 <InputLabel
@@ -113,9 +139,9 @@ const QrCode = () => {
             </div>
             <div>
                 {!isRunning ? (
-                    <Botao onClick={startQRCode}>Iniciar QR Code</Botao>
+                    <BotaoPrimario onClick={startQRCode}>Iniciar QR Code</BotaoPrimario>
                 ) : (
-                    <Botao onClick={stopQRCode}>Parar QR Code</Botao>
+                    <BotaoPrimario onClick={stopQRCode}>Parar QR Code</BotaoPrimario>
                 )}
             </div>
             <div>
