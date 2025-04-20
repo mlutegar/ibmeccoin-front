@@ -1,9 +1,10 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 import API_BASE_URL from "../../../config";
-import { Container, Lista, ItemLista, Mensagem, Erro } from "./Style";
+import {Container, Lista, ItemLista, Mensagem, Erro} from "./Style";
 import Cookies from "js-cookie";
 import Botao from "../../Elementos/Botoes/Botao/Botao";
 import BotaoPrimario from "../../Elementos/Botoes/BotaoPrimario/BotaoPrimario";
+import CardConvite from "../../Elementos/Cards/CardConvite/CardConvite";
 
 const ConvitesLista = () => {
     const [convites, setConvites] = useState([]);
@@ -88,7 +89,7 @@ const ConvitesLista = () => {
                     "Content-Type": "application/json",
                     'X-CSRFToken': csrftoken,
                 },
-                body: JSON.stringify({ ...grupoData, alunos: alunosAtualizados })
+                body: JSON.stringify({...grupoData, alunos: alunosAtualizados})
             });
 
             if (!updateGrupoResponse.ok) {
@@ -127,21 +128,31 @@ const ConvitesLista = () => {
     return (
         <Container>
             {convites.length > 0 ? (
-                <Lista>
+                <>
                     {convites.map((convite) => (
-                        <ItemLista key={convite.id}>
-                            <strong>ID:</strong> {convite.id} <br />
-                            <strong>Grupo:</strong> {convite.grupo} <br />
-                            <strong>Remetente:</strong> {convite.remetente} <br />
-                            <strong>Expiração:</strong> {convite.expiracao} <br />
-                            <strong>Válido:</strong> {convite.valido ? "Sim" : "Não"}
-                            <hr />
-                            <BotaoPrimario onClick={() => handleAceitarConvite(convite)}>
-                                Aceitar
-                            </BotaoPrimario>
-                        </ItemLista>
+                        <>
+                            <CardConvite
+                                titulo={"Grupo 1"}
+                                subtitulo={"Convite de Michel"}
+                                botaoTexto={"1"}
+                                onClick={""}
+                            >
+
+                            </CardConvite>
+                            <ItemLista key={convite.id}>
+                                <strong>ID:</strong> {convite.id} <br/>
+                                <strong>Grupo:</strong> {convite.grupo} <br/>
+                                <strong>Remetente:</strong> {convite.remetente} <br/>
+                                <strong>Expiração:</strong> {convite.expiracao} <br/>
+                                <strong>Válido:</strong> {convite.valido ? "Sim" : "Não"}
+                                <hr/>
+                                <BotaoPrimario onClick={() => handleAceitarConvite(convite)}>
+                                    Aceitar
+                                </BotaoPrimario>
+                            </ItemLista>
+                        </>
                     ))}
-                </Lista>
+                </>
             ) : (
                 <Mensagem>Nenhum convite pendente.</Mensagem>
             )}

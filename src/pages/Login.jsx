@@ -128,6 +128,13 @@ const Login = () => {
                 >
                     Criar conta
                 </BotaoSecundario>
+
+                <BotaoSecundario
+                    onClick={() => navigate("/recuperar-senha")}
+                >
+                    Esqueci minha senha
+                </BotaoSecundario>
+
             </form>
         </LoginStyle>
     );

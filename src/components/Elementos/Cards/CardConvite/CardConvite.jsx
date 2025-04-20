@@ -1,7 +1,6 @@
 import {CardConviteStyle} from "./Style";
 import Subtitulo from "../../Textos/Subtitulo/Subtitulo";
 import TextoSimples from "../../Textos/TextoSimples/TextoSimples";
-import BotaoPrimario from "../../Botoes/BotaoPrimario/BotaoPrimario";
 import SelectBotao from "../../Botoes/SelectBotao/SelectBotao";
 
 const CardConvite = ({titulo, subtitulo, botaoTexto, onClick}) => {

@@ -1,11 +1,13 @@
 import {useEffect, useState} from "react";
 import API_BASE_URL from "../../../config";
-import {Container, Title, List, ListItem, Message} from "./Style";
+import {Container, List, Message} from "./Style";
 import ConviteForm from "../ConviteForm/ConviteForm";
-import ConvitesLista from "../ConvitesLista/ConvitesLista";
 import Cookies from "js-cookie";
 import CriarGrupo from "../CriarGrupo/CriarGrupo";
 import SairGrupo from "../SairGrupo/SairGrupo";
+import Titulo from "../../Elementos/Textos/Titulo/Titulo";
+import Subtitulo from "../../Elementos/Textos/Subtitulo/Subtitulo";
+import SubtituloInvertido from "../../Elementos/Textos/SubtituloInvertido/SubtituloInvertido";
 
 const GrupoMembros = () => {
     const [membros, setMembros] = useState([]);
@@ -73,11 +75,11 @@ const GrupoMembros = () => {
                 </>
             ) : (
                 <>
-                    <Title>Membros do Grupo {grupoId}</Title>
+                    <Titulo>Membros do Grupo {grupoId}</Titulo>
                     {membros.length > 0 ? (
                         <List>
                             {membros.map((id) => (
-                                <ListItem key={id}>Aluno ID: {id}</ListItem>
+                                <SubtituloInvertido key={id}>Aluno ID: {id}</SubtituloInvertido>
                             ))}
                         </List>
                     ) : (

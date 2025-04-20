@@ -15,6 +15,8 @@ import DoarPontosAlunoPage from "./pages/DoarPontosAlunoPage";
 import DoarPontosGrupoPage from "./pages/DoarPontosGrupoPage";
 import Doar from "./pages/Doar";
 import Convites from "./pages/Convites";
+import RecuperarSenha from "./pages/RecuperarSenha";
+import TrocarSenha from "./pages/TrocarSenha";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -37,6 +39,9 @@ root.render(
         <Route path="/login" element={<Login/>} />
         <Route path="/cadastro" element={<Cadastro/>} />
         <Route path="/perfil" element={<Perfil/>} />
+        <Route path="/recuperar-senha" element={<RecuperarSenha/>} />
+        <Route path="/trocar-senha" element={<TrocarSenha/>} />
+
       </Routes>
     </HashRouter>
   </React.StrictMode>
