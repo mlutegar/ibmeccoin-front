@@ -9,18 +9,23 @@ import SubtituloInvertido from "../components/Elementos/Textos/SubtituloInvertid
 import InputPuro from "../components/Elementos/InputPuro/InputPuro";
 
 const TokenHandler = () => {
+    const navigate = useNavigate();
     const { tokenId } = useParams();
     const [token, setToken] = useState("");
     const [isLoading, setIsLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
-    const navigate = useNavigate();
 
-    // Usar o tokenId da URL para preencher o campo de input automaticamente
     useEffect(() => {
         if (tokenId) {
             setToken(tokenId);
         }
     }, [tokenId]);
+
+    useEffect(() => {
+        if (!localStorage.getItem("token")) {
+            navigate("/login");
+        }
+    }, [navigate]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

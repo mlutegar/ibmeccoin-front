@@ -4,11 +4,16 @@ import GrupoMembros from "../components/Secoes/GrupoMembros/GrupoMembros";
 import Base from "./Base";
 import Titulo from "../components/Elementos/Textos/Titulo/Titulo";
 import alunoTemGrupo from "../api/alunoTemGrupo";
+import HeaderTitulo from "../components/HeaderTitulo/HeaderTitulo";
+import PontuacaoGrupo from "../components/Secoes/PontuacaoGrupo/PontuacaoGrupo";
+import pegarInformacoesGrupoPorIdUsuario from "../api/pegarInformacoesGrupoPorIdUsuario";
+import pegarInformacoesUsuarioPorId from "../api/pegarInformacoesUsuarioPorId";
 
 const Grupo = () => {
     const navigate = useNavigate();
     const alunoId = localStorage.getItem("alunoId");
     const [temGrupo, setTemGrupo] = useState(null);
+    const [nomeGrupo, setNomeGrupo] = useState("");
 
     useEffect(() => {
         async function verificaGrupo() {
@@ -19,7 +24,16 @@ const Grupo = () => {
                 navigate("/convites");
             }
         }
+
+        async function pegarNomeGrupo() {
+            let dataGrupo = await pegarInformacoesGrupoPorIdUsuario();
+            if (dataGrupo && dataGrupo.nome) {
+                setNomeGrupo(dataGrupo.nome);
+            }
+        }
+
         verificaGrupo();
+        pegarNomeGrupo();
     }, [alunoId, navigate]);
 
     if (temGrupo === null) {
@@ -29,7 +43,13 @@ const Grupo = () => {
 
     return (
         <Base>
-            <Titulo>Grupo</Titulo>
+            <HeaderTitulo>
+                GRUPO - {nomeGrupo}
+            </HeaderTitulo>
+            <PontuacaoGrupo/>
+            <Titulo>
+                MEMBROS
+            </Titulo>
             <GrupoMembros />
         </Base>
     );

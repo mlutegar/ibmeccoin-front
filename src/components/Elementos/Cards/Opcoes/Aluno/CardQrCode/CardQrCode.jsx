@@ -1,8 +1,8 @@
-import { useState, useEffect } from "react";
-import { CardQrCodeStyle } from "./Style";
+import {useState, useEffect} from "react";
+import {CardQrCodeStyle} from "./Style";
 import CardTemplate from "../../CardTemplate/CardTemplate";
 import MyQrReader from "../../../../../Secoes/MyQrReader/MyQrReader";
-import { QrCode } from "../../../../../Icones/QrCode";
+import {QrCode} from "../../../../../Icones/QrCode";
 
 const CardQrCode = () => {
     const [cameraActive, setCameraActive] = useState(false);
@@ -12,7 +12,6 @@ const CardQrCode = () => {
     const handleScanSuccess = (data) => {
         setQrResult(data);
         setCameraActive(false);
-        console.log("QR Code lido:", data);
     };
 
     const handleScanError = (err) => {
@@ -22,7 +21,6 @@ const CardQrCode = () => {
 
     const handleCameraActive = () => {
         setCameraActive(true);
-        console.log("Camera ativa");
     };
 
     const toggleCamera = () => {
@@ -32,7 +30,7 @@ const CardQrCode = () => {
     return (
         <CardQrCodeStyle>
             <CardTemplate
-                svg={<QrCode />}
+                svg={<QrCode/>}
                 titulo={"QrCode"}
                 texto={"Leia o QrCode"}
                 botao={"Ler QrCode"}

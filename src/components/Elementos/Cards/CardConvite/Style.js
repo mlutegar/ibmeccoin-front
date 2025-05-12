@@ -16,5 +16,27 @@ export const CardConviteStyle = styled.div`
     
     .parte2{
         margin-right: 1rem;
+        display: flex;
+        gap: 1rem;
+    }
+    
+    .btn1, .btn2{
+        width: 3.375rem;
+        height: 2.75rem;
+        flex-shrink: 0;
+        border-radius: 0.625rem;
+        background: #F5AC00;
+        border: none;
+
+        color: #FFF;
+        font-family: Krub;
+        font-size: 1rem;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+    }
+
+    .btn2{
+        background: #0935AA;
     }
 `

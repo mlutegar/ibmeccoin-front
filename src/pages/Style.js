@@ -42,7 +42,6 @@ export const ConvitesStyle = styled.div`
         width: 100%;
         display: flex;
         justify-content: space-between;
-        padding: 0 1.63rem;
         box-sizing: border-box;
         
         .titulo{

@@ -1,15 +1,15 @@
-// GrupoMembrosStyles.js
 import styled from "styled-components";
 
-export const Container = styled.div`
-    max-width: 600px;
-    margin: 2rem auto;
-    padding: 1.5rem;
-    color: white !important;
-    border-radius: 0.5rem;
+export const GrupoMembrosStyle = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 2rem;
+    
+    color: white !important;
+    border-radius: 0.5rem;
+    
+    width: 100%;
 `;
 
 export const Title = styled.h2`

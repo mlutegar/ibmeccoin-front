@@ -35,11 +35,8 @@ const ConvitesLista = () => {
                 if (response.ok) {
                     const data = await response.json();
 
-                    console.log(data);
-                    console.log(alunoId);
                     const convitesFiltrados = data.filter(convite => convite.destinatario == alunoId);
                     setConvites(convitesFiltrados);
-                    console.log(convitesFiltrados);
                 } else {
                     setError("Erro ao buscar convites.");
                 }
@@ -111,7 +108,6 @@ const ConvitesLista = () => {
                 return;
             }
 
-            // 4️⃣ Atualiza a lista de convites na interface
             setConvites(prevConvites => prevConvites.filter(c => c.id !== convite.id));
 
             alert("Convite aceito com sucesso!");
@@ -122,6 +118,41 @@ const ConvitesLista = () => {
         }
     };
 
+    const handleRecusarConvite = async (convite) => {
+        const token = localStorage.getItem("token");
+        const alunoId = localStorage.getItem("alunoId"); // ID do aluno logado
+        const csrftoken = Cookies.get('csrftoken');
+
+        if (!token || !alunoId) {
+            alert("Usuário não autenticado ou ID do aluno não encontrado.");
+            return;
+        }
+
+        try {
+            // 3️⃣ Apaga o convite da API
+            const deleteResponse = await fetch(`${API_BASE_URL}/api/convites/${convite.id}/`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                    'X-CSRFToken': csrftoken,
+                },
+            });
+
+            if (!deleteResponse.ok) {
+                alert("Erro ao excluir convite.");
+                return;
+            }
+
+            setConvites(prevConvites => prevConvites.filter(c => c.id !== convite.id));
+
+            alert("Convite recusado com sucesso!");
+            window.location.reload();
+        } catch (error) {
+            console.error("Erro ao recusar convite:", error);
+            alert("Erro ao recusar convite. Tente novamente.");
+        }
+    }
+
     if (loading) return <Mensagem>Carregando convites...</Mensagem>;
     if (error) return <Erro>{error}</Erro>;
 
@@ -130,27 +161,12 @@ const ConvitesLista = () => {
             {convites.length > 0 ? (
                 <>
                     {convites.map((convite) => (
-                        <>
-                            <CardConvite
-                                titulo={"Grupo 1"}
-                                subtitulo={"Convite de Michel"}
-                                botaoTexto={"1"}
-                                onClick={""}
-                            >
-
-                            </CardConvite>
-                            <ItemLista key={convite.id}>
-                                <strong>ID:</strong> {convite.id} <br/>
-                                <strong>Grupo:</strong> {convite.grupo} <br/>
-                                <strong>Remetente:</strong> {convite.remetente} <br/>
-                                <strong>Expiração:</strong> {convite.expiracao} <br/>
-                                <strong>Válido:</strong> {convite.valido ? "Sim" : "Não"}
-                                <hr/>
-                                <BotaoPrimario onClick={() => handleAceitarConvite(convite)}>
-                                    Aceitar
-                                </BotaoPrimario>
-                            </ItemLista>
-                        </>
+                        <CardConvite
+                            titulo={`Grupo ${convite.grupo}`}
+                            subtitulo={`Convite de ${convite.remetente}`}
+                            onClickSim={() => handleAceitarConvite(convite)}
+                            onClickNao={() => handleRecusarConvite(convite)}
+                        />
                     ))}
                 </>
             ) : (

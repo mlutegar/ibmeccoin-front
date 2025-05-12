@@ -57,7 +57,8 @@ div.container {
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 3rem 0;
+  padding: 3rem 1.5rem;
+  gap: 2rem;
 }
 
 h1,h2,h3,h4,h5,h6{

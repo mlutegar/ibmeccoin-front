@@ -4,9 +4,9 @@ import TextoSimples from "../../Textos/TextoSimples/TextoSimples";
 import BotaoPrimario from "../../Botoes/BotaoPrimario/BotaoPrimario";
 import SelectBotao from "../../Botoes/SelectBotao/SelectBotao";
 
-const CardInfo = ({titulo, subtitulo, botaoTexto, onClick}) => {
+const CardInfo = ({titulo, subtitulo, className, botaoTexto, onClick}) => {
     return (
-        <CardInfoStyle onClick={onClick}>
+        <CardInfoStyle onClick={onClick} className={className}>
             <div className={'parte1'}>
                 <Subtitulo>
                     {titulo}

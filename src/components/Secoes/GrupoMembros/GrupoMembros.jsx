@@ -1,16 +1,19 @@
 import {useEffect, useState} from "react";
 import API_BASE_URL from "../../../config";
-import {Container, List, Message} from "./Style";
-import ConviteForm from "../ConviteForm/ConviteForm";
+import {GrupoMembrosStyle, List, Message} from "./Style";
 import Cookies from "js-cookie";
 import CriarGrupo from "../CriarGrupo/CriarGrupo";
 import SairGrupo from "../SairGrupo/SairGrupo";
-import Titulo from "../../Elementos/Textos/Titulo/Titulo";
-import Subtitulo from "../../Elementos/Textos/Subtitulo/Subtitulo";
-import SubtituloInvertido from "../../Elementos/Textos/SubtituloInvertido/SubtituloInvertido";
+import ContainerMembros from "../../ContainerMembros/ContainerMembros";
+import BotaoPrimario from "../../Elementos/Botoes/BotaoPrimario/BotaoPrimario";
+import pegarInformacoesUsuarioPorId from "../../../api/pegarInformacoesUsuarioPorId";
+import {useNavigate} from "react-router-dom";
 
 const GrupoMembros = () => {
+    const navigate = useNavigate();
+
     const [membros, setMembros] = useState([]);
+    const [membrosNomes, setMembrosNomes] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [grupoId, setGrupoId] = useState(null);
@@ -64,10 +67,39 @@ const GrupoMembros = () => {
         fetchGrupoDoUsuario();
     }, [alunoId]);
 
+    useEffect(() => {
+        const atualizarMembrosTrocandoIdPorNome = async (membros) => {
+            const membrosComNomes = await Promise.all(
+                membros.map(async (id) => {
+                    const aluno = await pegarInformacoesUsuarioPorId(id);
+                    return aluno ? aluno.first_name : id;
+                })
+            );
+            return membrosComNomes;
+        }
+
+        const atualizarMembros = async () => {
+            if (membros.length > 0) {
+                const membrosComNomes = await atualizarMembrosTrocandoIdPorNome(membros);
+                setMembrosNomes(membrosComNomes);
+            }
+        };
+
+        atualizarMembros();
+    }, [membros]);
+
+    const handleCliqueConvidarMembro = () => {
+        if (grupoId) {
+            navigate("/grupo-mandar-convite", { state: { grupoId } });
+        } else {
+            setError("Grupo não encontrado.");
+        }
+    }
+
     if (loading) return <Message>Carregando informações do grupo...</Message>;
 
     return (
-        <Container>
+        <GrupoMembrosStyle>
             {error ? (
                 <>
                     <Message>{error}</Message>
@@ -75,22 +107,15 @@ const GrupoMembros = () => {
                 </>
             ) : (
                 <>
-                    <Titulo>Membros do Grupo {grupoId}</Titulo>
-                    {membros.length > 0 ? (
-                        <List>
-                            {membros.map((id) => (
-                                <SubtituloInvertido key={id}>Aluno ID: {id}</SubtituloInvertido>
-                            ))}
-                        </List>
-                    ) : (
-                        <Message>Este grupo ainda não possui membros.</Message>
-                    )}
-                    {/* Botão para sair do grupo */}
-                    <ConviteForm/>
+                    <ContainerMembros
+                        membrosNomes={membrosNomes.map((id) => `${id}`)}
+                    />
+
+                    <BotaoPrimario onClick={handleCliqueConvidarMembro}>Convidar membro</BotaoPrimario>
                     <SairGrupo grupoId={grupoId} membros={membros} onSair={setMembros} />
                 </>
             )}
-        </Container>
+        </GrupoMembrosStyle>
     );
 
 };

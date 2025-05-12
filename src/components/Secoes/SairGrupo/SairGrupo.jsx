@@ -3,6 +3,7 @@ import API_BASE_URL from "../../../config";
 import Cookies from "js-cookie";
 import Botao from "../../Elementos/Botoes/Botao/Botao";
 import BotaoPrimario from "../../Elementos/Botoes/BotaoPrimario/BotaoPrimario";
+import BotaoSecundario from "../../Elementos/Botoes/BotaoSecundario/BotaoSecundario";
 
 const SairGrupo = ({ grupoId, membros, onSair }) => {
     const [loading, setLoading] = useState(false);
@@ -59,9 +60,9 @@ const SairGrupo = ({ grupoId, membros, onSair }) => {
     return (
         <>
             {error && <div>{error}</div>}
-            <BotaoPrimario onClick={handleSair} disabled={loading}>
+            <BotaoSecundario onClick={handleSair} disabled={loading}>
                 {loading ? "Saindo..." : "Sair do Grupo"}
-            </BotaoPrimario>
+            </BotaoSecundario>
         </>
     );
 };

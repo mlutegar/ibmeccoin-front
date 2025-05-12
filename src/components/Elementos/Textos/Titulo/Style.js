@@ -13,6 +13,4 @@ export const TituloStyle = styled.div`
     display: flex;
     width: 100%;
     justify-content: flex-start;
-    margin-left: 3rem;
-    margin-bottom: 1rem;
 `;

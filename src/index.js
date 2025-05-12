@@ -17,6 +17,7 @@ import Doar from "./pages/Doar";
 import Convites from "./pages/Convites";
 import RecuperarSenha from "./pages/RecuperarSenha";
 import TrocarSenha from "./pages/TrocarSenha";
+import GrupoConvidarMembro from "./pages/GrupoConvidarMembro";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -27,8 +28,10 @@ root.render(
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path="/token/:tokenId" element={<TokenHandler />} />
-        <Route path="/grupo" element={<Grupo/>} />
         <Route path="/convites" element={<Convites/>} />
+
+        <Route path="/grupo" element={<Grupo/>} />
+        <Route path="/grupo-mandar-convite" element={<GrupoConvidarMembro/>} />
 
         <Route path="/professor" element={<HomeProfessor/>} />
         <Route path="/qr-code" element={<QrCode/>} />

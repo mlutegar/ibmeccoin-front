@@ -3,6 +3,7 @@ import Base from "./Base";
 import {useNavigate} from "react-router-dom";
 import Titulo from "../components/Elementos/Textos/Titulo/Titulo";
 import DoarPontosAluno from "../components/Secoes/DoarPontosAluno/DoarPontosAluno";
+import HeaderTitulo from "../components/HeaderTitulo/HeaderTitulo";
 
 const DoarPontosAlunoPage = () => {
     const navigate = useNavigate();
@@ -17,9 +18,9 @@ const DoarPontosAlunoPage = () => {
 
     return (
         <Base>
-            <Titulo>
+            <HeaderTitulo>
                 Doar pontos Aluno
-            </Titulo>
+            </HeaderTitulo>
             <DoarPontosAluno/>
         </Base>
     );

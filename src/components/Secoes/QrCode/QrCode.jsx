@@ -36,11 +36,9 @@ const QrCode = () => {
             });
             if (response.ok) {
                 const data = await response.json();
-                console.log("Token criado:", data);
                 setTokenId(`${API_BASE_URL}/#/token/${data.id}`);
             } else {
                 const errorData = await response.json();
-                console.error("Erro ao criar token:", errorData);
             }
         } catch (error) {
             console.error("Erro na requisição:", error);

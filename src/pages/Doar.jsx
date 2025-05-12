@@ -8,6 +8,7 @@ import SubtituloInvertido from "../components/Elementos/Textos/SubtituloInvertid
 import Cookies from "js-cookie";
 import API_BASE_URL from "../config";
 import getSaldoAluno from "../api/getSaldoAluno";
+import HeaderTitulo from "../components/HeaderTitulo/HeaderTitulo";
 
 const Doar = () => {
     const [doacoes, setDoacoes] = useState({});
@@ -87,8 +88,9 @@ const Doar = () => {
 
     return (
         <Base>
-            <Titulo>Doar pontos</Titulo>
-
+            <HeaderTitulo>
+                Doar pontos
+            </HeaderTitulo>
             <div
                 style={{
                     display: "flex",

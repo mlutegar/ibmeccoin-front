@@ -11,6 +11,8 @@ import {Message} from "../components/Secoes/CriarGrupo/Style";
 import {useNavigate} from "react-router-dom";
 import {ConvitesStyle} from "./Style";
 import BotaoVoltar from "../components/Elementos/Botoes/BotaoVoltar/BotaoVoltar";
+import HeaderTitulo from "../components/HeaderTitulo/HeaderTitulo";
+import InputAlongado from "../components/InputAlongado/InputAlongado";
 
 const Convites = () => {
     const [nome, setNome] = useState("");
@@ -20,7 +22,6 @@ const Convites = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log(nome)
 
         if (!nome) {
             setError("Preencha todos os campos.");
@@ -34,9 +35,6 @@ const Convites = () => {
             turma: 2, // A turma é sempre 1
             alunos: [Number(alunoId)] // Adiciona o aluno que criou o grupo
         };
-
-        console.log("Payload:", JSON.stringify(payload));
-        console.log("API Base URL:", API_BASE_URL);
 
         try {
             const token = localStorage.getItem("token");
@@ -74,41 +72,31 @@ const Convites = () => {
 
     return (
         <Base>
-            <ConvitesStyle>
-                <div className={'header'}>
-                    <Titulo className={"titulo"}>
-                        Convites
-                    </Titulo>
+            <HeaderTitulo>
+                Convites
+            </HeaderTitulo>
 
-                    <BotaoVoltar onClick={() => navigate('/')}>
-                        Voltar
-                    </BotaoVoltar>
-                </div>
+            <ConvitesLista/>
 
-                <ConvitesLista/>
+            <Titulo>
+                CRIAR GRUPO
+            </Titulo>
 
-                {error && <Message>{error}</Message>}
+            <InputAlongado
+                placeholder="Digite o nome do grupo"
+                title={"Nome do grupo"}
+                value={nome}
+                type={"text"}
+                onChange={(event) => setNome(event.target.value)}
+            />
 
-                <div style={{display: "flex", flexDirection: "column", gap: "2rem"}}>
-                    <div style={{textAlign: "center"}}>
-                        <SubtituloInvertido>
-                            Nome Grupo
-                        </SubtituloInvertido>
-                        <InputPuro
-                            placeholder="Digite o nome do grupo"
-                            value={nome}
-                            type={"text"}
-                            onChange={(event) => setNome(event.target.value)}
-                        />
-                    </div>
-                    <BotaoPrimario
-                        type={"button"}
-                        onClick={handleSubmit}
-                    >
-                        Criar Grupo
-                    </BotaoPrimario>
-                </div>
-            </ConvitesStyle>
+            <BotaoPrimario
+                type={"button"}
+                onClick={handleSubmit}
+            >
+                Criar Grupo
+            </BotaoPrimario>
+            {error && <Message>{error}</Message>}
         </Base>
     );
 }

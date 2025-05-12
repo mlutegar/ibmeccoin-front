@@ -27,11 +27,9 @@ const Home = () => {
             <Titulo>
                 Atendimento e Plan.
             </Titulo>
-            <div style={{marginTop: "1rem"}}>
-            </div>
+
             <Pontuacao saldo={1}/>
-            <div style={{marginTop: "1rem"}}>
-            </div>
+
             <Titulo>
                 OPÇÕES
             </Titulo>

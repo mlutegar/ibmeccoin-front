@@ -34,12 +34,10 @@ const ConviteForm = () => {
             });
 
             if (response.ok) {
-                console.log("Convite enviado com sucesso!");
                 alert("Convite enviado com sucesso!");
-                setConviteId(""); // Limpa o campo após o envio
+                setConviteId("");
             } else {
                 const errorData = await response.json();
-                console.error("Erro ao enviar convite:", errorData);
                 alert("Erro ao enviar convite: " + (errorData.detail || "Tente novamente."));
             }
         } catch (error) {

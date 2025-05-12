@@ -27,8 +27,6 @@ const Cadastro = () => {
         }
         const jsonBody = JSON.stringify(body);
 
-        console.log(jsonBody);
-
         event.preventDefault();
         try {
             const response = await fetch(`${API_BASE_URL}/api/cadastro/`, {
