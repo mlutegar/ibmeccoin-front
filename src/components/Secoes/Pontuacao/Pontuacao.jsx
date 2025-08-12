@@ -4,7 +4,7 @@ import API_BASE_URL from "../../../config";
 import Cookies from "js-cookie";
 
 const Pontuacao = ({turma}) => {
-    const [saldo, setSaldo] = useState(null);
+    const [saldo, setSaldo] = useState(localStorage.getItem("saldo") || 0);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -46,6 +46,7 @@ const Pontuacao = ({turma}) => {
                     return mov.tipo === "C" ? acc + mov.valor : acc - mov.valor;
                 }, 0);
 
+                localStorage.setItem("saldo", computedSaldo);
                 setSaldo(computedSaldo);
             } catch (err) {
                 setError(err.message);

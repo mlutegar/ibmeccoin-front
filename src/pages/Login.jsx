@@ -3,7 +3,7 @@ import {useNavigate} from "react-router-dom";
 import {Logo} from "../components/Icones/Logo";
 import InputLabel from "../components/Elementos/InputLabel/InputLabel";
 import API_BASE_URL from "../config";
-import {LoginStyle} from "./Style";
+import {LoginStyle, WelcomeContainer, WelcomeTitle, WelcomeSubtitle, ForgotPasswordLink, PasswordContainer, LoadingSpinner, LoadingModal, LoadingContent, LoadingText} from "./Style";
 import Cookies from 'js-cookie';
 import BotaoPrimario from "../components/Elementos/Botoes/BotaoPrimario/BotaoPrimario";
 import BotaoSecundario from "../components/Elementos/Botoes/BotaoSecundario/BotaoSecundario";
@@ -12,12 +12,26 @@ const Login = () => {
     const [username, setUsername] = useState('');
     const [senha, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate();
 
     const handleLogin = async (event) => {
         const csrftoken = Cookies.get('csrftoken');
         event.preventDefault();
         setErrorMessage(''); // Limpa o erro anterior ao tentar novo login
+
+        // Validação de campos obrigatórios
+        if (!username.trim()) {
+            setErrorMessage('Por favor, preencha a matrícula.');
+            return;
+        }
+
+        if (!senha.trim()) {
+            setErrorMessage('Por favor, preencha a senha.');
+            return;
+        }
+
+        setIsLoading(true); // Inicia o loading
 
         try {
             const response = await fetch(`${API_BASE_URL}/api/login/`, {
@@ -55,6 +69,8 @@ const Login = () => {
         } catch (error) {
             setErrorMessage("Erro ao conectar com o servidor.");
             console.error(error);
+        } finally {
+            setIsLoading(false); // Para o loading
         }
     };
 
@@ -94,6 +110,10 @@ const Login = () => {
     return (
         <LoginStyle>
             <Logo/>
+            <WelcomeContainer>
+                <WelcomeTitle>Seja bem-vindo!</WelcomeTitle>
+                <WelcomeSubtitle>Carteira virtual de suas Aulas Ibmec</WelcomeSubtitle>
+            </WelcomeContainer>
             <form onSubmit={handleLogin}>
                 {errorMessage && (
                     <div className="error-message" style={{
@@ -113,27 +133,37 @@ const Login = () => {
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
                 />
-                <InputLabel
-                    label={"Senha"}
-                    placeholder={"Digite sua senha"}
-                    type="password"
-                    value={senha}
-                    onChange={(e) => setPassword(e.target.value)}
-                />
-                <BotaoPrimario type="submit">Entrar</BotaoPrimario>
+                <PasswordContainer>
+                    <InputLabel
+                        label={"Senha"}
+                        placeholder={"Digite sua senha"}
+                        type="password"
+                        value={senha}
+                        onChange={(e) => setPassword(e.target.value)}
+                    />
+                    <ForgotPasswordLink onClick={() => navigate("/recuperar-senha")}>
+                        Esqueci minha senha
+                    </ForgotPasswordLink>
+                </PasswordContainer>
+                <BotaoPrimario type="submit" disabled={isLoading}>
+                    Entrar
+                </BotaoPrimario>
                 <BotaoSecundario
                     onClick={() => navigate("/cadastro")}
                 >
                     Criar conta
                 </BotaoSecundario>
 
-                <BotaoSecundario
-                    onClick={() => navigate("/recuperar-senha")}
-                >
-                    Esqueci minha senha
-                </BotaoSecundario>
-
             </form>
+            
+            {isLoading && (
+                <LoadingModal>
+                    <LoadingContent>
+                        <LoadingSpinner />
+                        <LoadingText>Entrando...</LoadingText>
+                    </LoadingContent>
+                </LoadingModal>
+            )}
         </LoginStyle>
     );
 }

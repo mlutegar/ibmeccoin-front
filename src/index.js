@@ -18,6 +18,7 @@ import Convites from "./pages/Convites";
 import RecuperarSenha from "./pages/RecuperarSenha";
 import TrocarSenha from "./pages/TrocarSenha";
 import GrupoConvidarMembro from "./pages/GrupoConvidarMembro";
+import LojaAluno from "./pages/LojaAluno";
 
 const container = document.getElementById("root");
 const root = createRoot(container);
@@ -32,6 +33,7 @@ root.render(
 
         <Route path="/grupo" element={<Grupo/>} />
         <Route path="/grupo-mandar-convite" element={<GrupoConvidarMembro/>} />
+        <Route path="/loja-aluno" element={<LojaAluno/>} />
 
         <Route path="/professor" element={<HomeProfessor/>} />
         <Route path="/qr-code" element={<QrCode/>} />

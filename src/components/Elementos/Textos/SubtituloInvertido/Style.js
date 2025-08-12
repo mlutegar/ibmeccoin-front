@@ -7,4 +7,9 @@ export const SubtituloInvertidoStyle = styled.div`
     font-style: normal;
     font-weight: 600;
     line-height: normal;
+
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    align-items: center;
 `

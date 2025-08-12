@@ -6,7 +6,7 @@ const CardLoja = () => {
     const navigate = useNavigate();
 
     const handleHref = () => {
-        navigate("/");
+        navigate("/loja-aluno");
     }
 
     return (
