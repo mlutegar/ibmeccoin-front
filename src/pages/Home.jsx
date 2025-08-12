@@ -28,7 +28,7 @@ const Home = () => {
                 Atendimento e Plan.
             </Titulo>
 
-            <Pontuacao saldo={1}/>
+            <Pontuacao/>
 
             <Titulo>
                 OPÇÕES

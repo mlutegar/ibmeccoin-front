@@ -1,4 +1,4 @@
-import {Style} from "./Style";
+import {Style, LoadingContainer, LoadingSpinner, LoadingText, ErrorContainer, ErrorText} from "./Style";
 import React, {useEffect, useState} from "react";
 import API_BASE_URL from "../../../config";
 import Cookies from "js-cookie";
@@ -59,11 +59,22 @@ const Pontuacao = ({turma}) => {
     }, []);
 
     if (loading) {
-        return <div>Carregando saldo...</div>;
+        return (
+            <LoadingContainer>
+                <LoadingSpinner />
+                <LoadingText>Carregando pontuação...</LoadingText>
+            </LoadingContainer>
+        );
     }
 
     if (error) {
-        return <div>Erro: {error}</div>;
+        return (
+            <ErrorContainer>
+                <ErrorText>
+                    Erro ao carregar pontuação: {error}
+                </ErrorText>
+            </ErrorContainer>
+        );
     }
 
     return (
