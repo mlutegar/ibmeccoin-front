@@ -1,18 +1,28 @@
 import styled from "styled-components";
 
 const Style = styled.div`
-    width: 21.1875rem;
+    width: 100%;
     height: 5.625rem;
     flex-shrink: 0;
     border-radius: 1.25rem;
-    background: #FFF;
+    background: linear-gradient(135deg, #FFF 0%, #F8F9FA 100%);
     margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(9, 53, 170, 0.1);
+    transition: all 0.3s ease;
+
+    &:hover {
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+        transform: translateY(-1px);
+    }
 
     .texto{
-        padding: 0 1rem;
+        padding: 0 1.5rem;
         display: flex;
         flex-direction: row;
         align-items: center;
+        height: 100%;
+        gap: 1rem;
     }
     
     .texto1 {
@@ -48,12 +58,14 @@ const Style = styled.div`
 `;
 
 const LoadingContainer = styled.div`
-    width: 21.1875rem;
+    width: 100%;
     height: 5.625rem;
     flex-shrink: 0;
     border-radius: 1.25rem;
-    background: #FFF;
+    background: linear-gradient(135deg, #FFF 0%, #F8F9FA 100%);
     margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(9, 53, 170, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -76,30 +88,31 @@ const LoadingSpinner = styled.div`
 
 const LoadingText = styled.div`
     color: #0935AA;
-    font-family: Krub;
+    font-family: 'Krub', sans-serif;
     font-size: 1rem;
     font-weight: 400;
 `;
 
 const ErrorContainer = styled.div`
-    width: 21.1875rem;
+    width: 100%;
     height: 5.625rem;
     flex-shrink: 0;
     border-radius: 1.25rem;
-    background: #FFEBEE;
-    border: 1px solid #FFCDD2;
+    background: linear-gradient(135deg, #FFEBEE 0%, #FFCDD2 100%);
+    border: 1px solid #F8BBD9;
     margin-bottom: 1rem;
+    box-shadow: 0 4px 12px rgba(211, 47, 47, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 1rem;
+    padding: 0 1.5rem;
 `;
 
 const ErrorText = styled.div`
     color: #D32F2F;
-    font-family: Krub;
+    font-family: 'Krub', sans-serif;
     font-size: 0.9rem;
-    font-weight: 400;
+    font-weight: 500;
     text-align: center;
     line-height: 1.4;
 `;
