@@ -8,6 +8,7 @@ import ContainerMembros from "../../ContainerMembros/ContainerMembros";
 import BotaoPrimario from "../../Elementos/Botoes/BotaoPrimario/BotaoPrimario";
 import pegarInformacoesUsuarioPorId from "../../../api/pegarInformacoesUsuarioPorId";
 import {useNavigate} from "react-router-dom";
+import InlineLoading from "../../Elementos/Loading/InlineLoading";
 
 const GrupoMembros = () => {
     const navigate = useNavigate();
@@ -96,7 +97,7 @@ const GrupoMembros = () => {
         }
     }
 
-    if (loading) return <Message>Carregando informações do grupo...</Message>;
+    if (loading) return <InlineLoading message="Carregando informações do grupo..." />;
 
     return (
         <GrupoMembrosStyle>

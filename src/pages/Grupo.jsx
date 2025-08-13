@@ -8,6 +8,7 @@ import HeaderTitulo from "../components/HeaderTitulo/HeaderTitulo";
 import PontuacaoGrupo from "../components/Secoes/PontuacaoGrupo/PontuacaoGrupo";
 import pegarInformacoesGrupoPorIdUsuario from "../api/pegarInformacoesGrupoPorIdUsuario";
 import pegarInformacoesUsuarioPorId from "../api/pegarInformacoesUsuarioPorId";
+import PageLoading from "../components/Elementos/Loading/PageLoading";
 
 const Grupo = () => {
     const navigate = useNavigate();
@@ -38,7 +39,14 @@ const Grupo = () => {
 
     if (temGrupo === null) {
         // Enquanto estiver verificando, exibe uma mensagem de carregamento
-        return <div>Carregando...</div>;
+        return (
+            <Base>
+                <PageLoading 
+                    title="Carregando Grupo..."
+                    message="Verificando suas informações de grupo e carregando os dados."
+                />
+            </Base>
+        );
     }
 
     return (

@@ -1,10 +1,11 @@
 import {useEffect, useState} from "react";
 import API_BASE_URL from "../../../config";
-import {Container, Lista, ItemLista, Mensagem, Erro} from "./Style";
+import {Container, Lista, ItemLista, Mensagem, Erro, EmptyStateContainer, EmptyStateIcon, EmptyStateTitle, EmptyStateMessage, EmptyStateSubtext} from "./Style";
 import Cookies from "js-cookie";
 import Botao from "../../Elementos/Botoes/Botao/Botao";
 import BotaoPrimario from "../../Elementos/Botoes/BotaoPrimario/BotaoPrimario";
 import CardConvite from "../../Elementos/Cards/CardConvite/CardConvite";
+import InlineLoading from "../../Elementos/Loading/InlineLoading";
 
 const ConvitesLista = () => {
     const [convites, setConvites] = useState([]);
@@ -153,7 +154,7 @@ const ConvitesLista = () => {
         }
     }
 
-    if (loading) return <Mensagem>Carregando convites...</Mensagem>;
+    if (loading) return <InlineLoading message="Carregando convites..." />;
     if (error) return <Erro>{error}</Erro>;
 
     return (
@@ -162,6 +163,7 @@ const ConvitesLista = () => {
                 <>
                     {convites.map((convite) => (
                         <CardConvite
+                            key={convite.id}
                             titulo={`Grupo ${convite.grupo}`}
                             subtitulo={`Convite de ${convite.remetente}`}
                             onClickSim={() => handleAceitarConvite(convite)}
@@ -170,7 +172,18 @@ const ConvitesLista = () => {
                     ))}
                 </>
             ) : (
-                <Mensagem>Nenhum convite pendente.</Mensagem>
+                <EmptyStateContainer>
+                    <EmptyStateIcon>
+                        📨
+                    </EmptyStateIcon>
+                    <EmptyStateTitle>Nenhum convite pendente</EmptyStateTitle>
+                    <EmptyStateMessage>
+                        Você não possui convites de grupos no momento.
+                    </EmptyStateMessage>
+                    <EmptyStateSubtext>
+                        Quando alguém te convidar para um grupo, o convite aparecerá aqui.
+                    </EmptyStateSubtext>
+                </EmptyStateContainer>
             )}
         </Container>
     );

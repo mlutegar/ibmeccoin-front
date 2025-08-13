@@ -1,5 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { QRCodeCanvas } from "qrcode.react";
+import { useNavigate } from "react-router-dom";
 import API_BASE_URL from "../../../config";
 import Cookies from "js-cookie";
 import {Style} from "./Style";
@@ -9,6 +10,7 @@ import BotaoSecundario from "../../Elementos/Botoes/BotaoSecundario/BotaoSecunda
 import BotaoPrimario from "../../Elementos/Botoes/BotaoPrimario/BotaoPrimario";
 
 const QrCode = () => {
+    const navigate = useNavigate();
     const [tokenId, setTokenId] = useState("");
     const [quantidade, setQuantidade] = useState("");
     const [label, setLabel] = useState("");  // Novo estado para a label
@@ -85,7 +87,7 @@ const QrCode = () => {
     };
 
     const voltarHome = () => {
-        window.location.href = '/';
+        navigate('/');
     }
 
     useEffect(() => {
