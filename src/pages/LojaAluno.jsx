@@ -27,7 +27,7 @@ const Home = () => {
     useEffect(() => {
         const getProdutos = async () => {
             const csrftoken = Cookies.get('csrftoken');
-            const response = await fetch("https://gtddjango.fly.dev/api/produtos/", {
+            const response = await fetch("https://ibmeccoin.fly.dev/api/produtos/", {
                 method: "GET",
                 headers: {
                     "Content-Type": "application/json",
@@ -60,7 +60,7 @@ const Home = () => {
     const postCompra = async (item, preco) => {
         const csrftoken = Cookies.get('csrftoken');
         const alunoId = localStorage.getItem("alunoId");
-        const response = await fetch("https://gtddjango.fly.dev/api/movimentacoes/", {
+        const response = await fetch("https://ibmeccoin.fly.dev/api/movimentacoes/", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
